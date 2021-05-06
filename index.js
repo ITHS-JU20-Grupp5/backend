@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 const fs = require('fs');
 const path = require('path');
+const password = require('./utils/passwordEncryption');
 
 const app = express();
 
