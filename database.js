@@ -7,4 +7,4 @@ module.exports = new sqlite.Database(DBFILE, (err) => {
        console.error('Database Error', err.message);
        throw err;
     }
-});;
+});

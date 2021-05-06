@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/users', (req, res) => {
-    db.all('select * from users', [], (err, rows) => {
+    db.all('select * from users', [], function (err, rows) {
         if (err) {
             res.status(400).json({ error: err.message });
             return;
@@ -27,7 +27,7 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/users/:id', (req, res) => {
-    db.all('select * from users where Id = ?', req.params.id, (err, row) => {
+    db.all('select * from users where Id = ?', req.params.id, function (err, row) {
         if (err) {
             res.status(400).json({ error: err.message });
             return;
@@ -50,16 +50,29 @@ app.get('/users/:id', (req, res) => {
  */
 app.post('/users', (req, res) => {
     let user = [req.body.username, req.body.name, req.body.email, req.body.password];
-    db.run('insert into users (Username, Name, Email, Password) values (?, ?, ?, ?)', user, function (err) {
+    db.get('select * from users where Username = ?', req.body.username, function (err, row) {
         if (err) {
             res.status(400).json({ error: err.message });
             return;
         }
-        res.json({
-            ok: true,
-            id: this.lastID
+        if (row) {
+            res.json({
+                ok: false,
+                message: "That username already exists"
+            });
+            return;
+        }
+        db.run('insert into users (Username, Name, Email, Password) values (?, ?, ?, ?)', user, function (err) {
+            if (err) {
+                res.status(400).json({ error: err.message });
+                return;
+            }
+            res.json({
+                ok: true,
+                id: this.lastID
+            });
         });
-    });
+    })
 });
 
 app.delete('/users/:id', (req, res) => {
