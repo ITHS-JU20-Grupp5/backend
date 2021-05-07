@@ -1,8 +1,10 @@
-const db = require.main.require('./database');
+const db = require.main.require('./utils/database');
+const password = require.main.require('./utils/passwordEncryption');
 
 module.exports = function (app) {
-  app.post('/users', (req, res) => {
-    const user = [req.body.username, req.body.name, req.body.email, req.body.password];
+  app.post('/users', async (req, res) => {
+    const hashedPassword = await password.hash(req.body.password);
+    const user = [req.body.username, req.body.name, req.body.email, hashedPassword];
     db.get('select * from users where Username = ?', req.body.username, (getErr, row) => {
       if (getErr) {
         res.status(400).json({

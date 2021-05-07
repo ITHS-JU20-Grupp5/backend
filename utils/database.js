@@ -1,6 +1,6 @@
 const sqlite = require('sqlite3');
 
-const DBFILE = 'general-knowledge.db';
+const DBFILE = './general-knowledge.db';
 
 module.exports = new sqlite.Database(DBFILE, (err) => {
   if (err) {

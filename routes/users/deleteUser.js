@@ -1,4 +1,4 @@
-const db = require.main.require('./database');
+const db = require.main.require('./utils/database');
 
 module.exports = function (app) {
   app.delete('/users/:id', (req, res) => {
