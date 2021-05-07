@@ -10,7 +10,6 @@ module.exports = function (app) {
         email: req.body.email
       })
       .then(function (response) {
-        console.log(response);
         res.json({
           ok: response.data.ok
         });
