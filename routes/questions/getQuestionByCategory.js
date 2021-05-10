@@ -12,10 +12,10 @@ module.exports = function (app) {
       }
       let index = 0;
       rows.forEach(row => {
-        db.get('select questions.Id, Question from questions inner join categories where questions.Id = ? and categories.Id = ?', [row.QuestionId, row.CategoryId], function (err, row) {
+        db.get('select questions.Id, Question from questions inner join categories where questions.Id = ? and categories.Id = ? order by RANDOM()', [row.QuestionId, row.CategoryId], function (err, row) {
           questions = [row, ...questions];
           index++;
-          if (index === rows.length) {
+          if (index === 5) {
             res.json({
               ok: true,
               questions
