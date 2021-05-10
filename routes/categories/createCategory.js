@@ -1,7 +1,7 @@
 const db = require.main.require('./utils/database');
 
 module.exports = function (app) {
-  app.post('/categories', async (req, res) => {
+  app.post('/categories', (req, res) => {
     const category = req.body.category;
     db.get('select * from categories where Category = ?', category, (getErr, row) => {
       if (getErr) {
