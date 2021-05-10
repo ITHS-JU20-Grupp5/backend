@@ -2,7 +2,7 @@ const db = require.main.require('./utils/database');
 
 module.exports = function (app) {
   app.post('/categories', (req, res) => {
-    const category = req.body.category;
+    const category = req.body.category.toUpperCase();
     db.get('select * from categories where Category = ?', category, (getErr, row) => {
       if (getErr) {
         res.status(400).json({
@@ -13,7 +13,7 @@ module.exports = function (app) {
       if (row) {
         res.json({
           ok: false,
-          message: 'That category already exitst',
+          message: 'That category already exists',
         });
         return;
       }
