@@ -1,7 +1,7 @@
 const db = require.main.require('./utils/database');
 
 module.exports = function (app) {
-    app.post('/questions', async (req, res) => {
+    app.post('/categories/:id/questions', (req, res) => {
         const question = req.body.question;
         db.get("select * from questions where Question = ?", question, (getErr, row) => {
             if (getErr) {
@@ -27,9 +27,17 @@ module.exports = function (app) {
                         });
                         return;
                     }
-                    res.json({
-                        ok: true,
-                        id: this.lastId,
+                    db.run('insert into category_questions (CategoryId, QuestionId) values (?, ?)', [req.params.id, this.lastID], function (err) {
+                        if (err) {
+                            res.json({
+                                ok: false,
+                                error: err.message
+                            });
+                            return;
+                        }
+                        res.json({
+                            ok: true
+                        });
                     });
                 }
             );
