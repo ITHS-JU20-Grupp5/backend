@@ -1,19 +1,29 @@
 const db = require.main.require('./utils/database');
 
 module.exports = function (app) {
-  app.post('/answers', function (req, res) {
+  app.post('/questions/:id/answers', function (req, res) {
     const correct = (req.body.correct ? true : false);
+    let answerId;
     db.run('insert into answers (Answer, Correct) values (?, ?)', [req.body.answer, correct], function (err) {
       if (err) {
         res.json({
           ok: false,
           error: err.message
         });
+        return;
       }
-      res.json({
-        ok: true,
-        id: this.lastID
-      })
-    })
-  })
+      db.run('insert into question_answers (QuestionId, AnswerId) values (?, ?)', [req.params.id, this.lastID], function (err) {
+        if (err) {
+          res.json({
+            ok: false,
+            error: err.message
+          });
+          return;
+        }
+        res.json({
+          ok: true
+        });
+      });
+    });
+  });
 }
