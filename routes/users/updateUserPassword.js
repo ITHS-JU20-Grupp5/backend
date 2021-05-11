@@ -1,10 +1,13 @@
 const db = require.main.require('./utils/database');
+const {
+  isAuthenticated
+} = require.main.require('./utils/utilities')
 
 module.exports = function (app) {
-  app.patch('/users/:id', (req, res) => {
+  app.patch('/users', isAuthenticated, (req, res) => {
     db.run(
       'update users set password = ? where Id = ?',
-      [req.body.password, req.params.id],
+      [req.body.password, req.user.Id],
       function (err) {
         if (err) {
           res.status(400).json({

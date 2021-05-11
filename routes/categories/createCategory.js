@@ -26,7 +26,7 @@ module.exports = function (app) {
         }
         res.json({
           ok: true,
-          id: this.lastID,
+          id: this.lastID
         });
       });
     });

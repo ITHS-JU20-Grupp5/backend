@@ -27,7 +27,8 @@ module.exports = function (app) {
                         });
                         return;
                     }
-                    db.run('insert into category_questions (CategoryId, QuestionId) values (?, ?)', [req.params.id, this.lastID], function (err) {
+                    let questionId = this.lastID;
+                    db.run('insert into category_questions (CategoryId, QuestionId) values (?, ?)', [req.params.id, questionId], function (err) {
                         if (err) {
                             res.json({
                                 ok: false,
@@ -36,7 +37,8 @@ module.exports = function (app) {
                             return;
                         }
                         res.json({
-                            ok: true
+                            ok: true,
+                            id: questionId
                         });
                     });
                 }
