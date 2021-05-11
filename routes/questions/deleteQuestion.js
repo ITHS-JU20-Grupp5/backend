@@ -8,8 +8,26 @@ module.exports = function (app) {
                 });
                 return;
             }
-            res.json({
-                ok: this.changes > 0,
+            db.run('delete from category_questions where QuestionId = ?', req.params.id, function (err) {
+                if (err) {
+                    res.json({
+                        ok: false,
+                        error: err.message
+                    });
+                    return;
+                }
+                db.run('delete from from question_answers where QuestionId = ?', req.params.id, function (err) {
+                    if (err) {
+                        res.json({
+                            ok: false,
+                            error: err.message
+                        });
+                        return;
+                    }
+                    res.json({
+                        ok: true
+                    });
+                });
             });
         });
     });

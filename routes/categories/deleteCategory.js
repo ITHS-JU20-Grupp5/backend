@@ -5,12 +5,21 @@ module.exports = function (app) {
     db.run('delete from categories where Id = ?', req.params.id, function (err) {
       if (err) {
         res.status(400).json({
-          eroor: err.message,
+          error: err.message,
         });
         return;
       }
-      res.json({
-        ok: this.canges > 0,
+      db.run('delete from category_questions where CategoryId = ?', req.params.id, function (err) {
+        if (err) {
+          res.json({
+            ok: false,
+            error: err.message
+          });
+          return;
+        }
+        res.json({
+          ok: true
+        });
       });
     });
   });
