@@ -6,7 +6,7 @@ module.exports = function (app) {
         let userId = req.user.Id;
         let scores = [];
         db.all('select * from user_scores where UserId = ?', [userId], function (err, rows) {
-            if(err) {
+            if (err) {
                 res.json({
                     ok: false,
                     error: err.message
@@ -18,14 +18,14 @@ module.exports = function (app) {
                     scores = [row, ...scores];
                     index++;
                     if (index === rows.length) {
-                        scores = scores.sort(function (a,b) {
+                        scores = scores.sort(function (a, b) {
                             if (a.Score > b.Score) return 1;
                             else if (a.Score < b.Score) return -1;
                             else return 0;
                         })
                         res.json({
                             ok: true,
-                            score: scores[scores.length -1]
+                            score: scores[scores.length - 1]
                         });
                     }
                 });

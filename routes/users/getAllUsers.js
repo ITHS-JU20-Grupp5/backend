@@ -9,9 +9,18 @@ module.exports = function (app) {
         });
         return;
       }
+      let users = [];
+      rows.forEach(row => {
+        users.push({
+          id: row.Id,
+          username: row.Username,
+          name: row.Name,
+          email: row.Email
+        })
+      });
       res.json({
         ok: true,
-        users: rows,
+        users,
       });
     });
   });

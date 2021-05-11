@@ -1,9 +1,11 @@
-const utils = require.main.require('./utils/utilities');
+const {
+  isAuthenticated
+} = require.main.require('./utils/utilities');
 
 module.exports = function (app) {
-  app.get('/test/admin', utils.isAuthenticated, (req, res) => {
+  app.get('/test/admin', isAuthenticated, (req, res) => {
     res.json({
-      msg: `Welcome ${req.user.Username}`
+      msg: `Welcome ${req.user.Name}`
     });
   });
 }

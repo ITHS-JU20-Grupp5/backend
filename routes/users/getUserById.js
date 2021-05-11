@@ -11,7 +11,12 @@ module.exports = function (app) {
       }
       res.json({
         ok: true,
-        user: row,
+        user: {
+          id: row.Id,
+          username: row.Username,
+          name: row.Name,
+          email: row.Email
+        }
       });
     });
   });

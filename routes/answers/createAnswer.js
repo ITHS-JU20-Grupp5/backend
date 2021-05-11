@@ -12,7 +12,8 @@ module.exports = function (app) {
         });
         return;
       }
-      db.run('insert into question_answers (QuestionId, AnswerId) values (?, ?)', [req.params.id, this.lastID], function (err) {
+      let answerId = this.lastID;
+      db.run('insert into question_answers (QuestionId, AnswerId) values (?, ?)', [req.params.id, answerId], function (err) {
         if (err) {
           res.json({
             ok: false,
@@ -21,7 +22,8 @@ module.exports = function (app) {
           return;
         }
         res.json({
-          ok: true
+          ok: true,
+          id: answerId
         });
       });
     });
