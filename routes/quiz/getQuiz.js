@@ -5,14 +5,17 @@ module.exports = function (app) {
   app.post('/quiz', function (req, res) {
     const options = {
       category: req.body.category || 'RANDOM',
-      questions: req.body.questions || 5,
+      // Keep for later
+      // In case we decide on things later on down the long long oregon trail
+      // questions: req.body.questions || 5,
+
       // easy = 2 answers
       // normal = 4 answers
       // hard = 6 answers
       difficulty: req.body.difficulty || 'easy'
     }
 
-    let answersAmount = options.difficulty.toUpperCase() === 'EASY' ? 2 : (options.difficulty.toUpperCase() === 'NORMAL' ? 4 : 6);
+    let answersAmount = options.difficulty.toUpperCase() === 'HARD' ? 6 : (options.difficulty.toUpperCase() === 'NORMAL' ? 4 : 2);
 
     let quiz = {};
 
@@ -32,6 +35,13 @@ module.exports = function (app) {
         if (err) {
           res.json({
             error: err.message,
+          });
+          return;
+        }
+        if (!row) {
+          res.json({
+            ok: true,
+            quiz: {}
           });
           return;
         }
@@ -88,6 +98,7 @@ module.exports = function (app) {
                     ok: true,
                     quiz
                   });
+                  return;
                 }
               })
               .catch(error => {
@@ -95,12 +106,17 @@ module.exports = function (app) {
                   res.json({
                     ok: false,
                     error: error.message
-                  })
+                  });
+                  return;
                 }
-              })
+              });
           });
         }
       });
-    })
+    });
+    res.json({
+      ok: true,
+      quiz: {}
+    });
   });
 }
