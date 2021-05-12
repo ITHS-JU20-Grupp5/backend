@@ -3,9 +3,23 @@ const password = require.main.require('./utils/passwordEncryption');
 
 module.exports = function (app) {
   app.post('/users', async (req, res) => {
+    if (!req.body.password.match (/[\w\d\S]{6,}/g)) {
+      res.json({
+        ok: false,
+        message: 'Your password must be at least 6 characters long and contain no spaces.'
+      });
+      return;
+    }
     const hashedPassword = await password.hash(req.body.password);
     const user = [req.body.username, req.body.name, req.body.email, hashedPassword];
-    db.get('select * from users where Username = ?', req.body.username, (getErr, row) => {
+    if (req.body.username.length < 4 || req.body.username.length > 32) {
+      res.json({
+        ok: false,
+        message: 'Your username must be between 4 and 32 characters.'
+      });
+      return;
+    }
+    db.get('select * from users where Username = ? or Email = ?', [req.body.username, req.body.email], (getErr, row) => {
       if (getErr) {
         res.status(400).json({
           error: getErr.message,
@@ -15,7 +29,7 @@ module.exports = function (app) {
       if (row) {
         res.json({
           ok: false,
-          message: 'That username already exists',
+          message: 'That username or email already exists',
         });
         return;
       }
