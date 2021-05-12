@@ -1,25 +1,45 @@
 const db = require.main.require('./utils/database');
-const password = require.main.require('./utils/passwordEncryption');
+const {
+  validate,
+  password
+} = require.main.require('./utils/utilities');
 
 module.exports = function (app) {
   app.post('/users', async (req, res) => {
-    if (!req.body.password.match (/[\w\d\S]{6,}/g)) {
+    const userObj = {
+      username: req.body.username.trim(),
+      name: req.body.name.trim(),
+      email: req.body.email.trim(),
+      password: req.body.password.trim()
+    }
+
+    // Validate
+    if (!validate.password(userObj.password)) {
       res.json({
         ok: false,
         message: 'Your password must be at least 6 characters long and contain no spaces.'
       });
       return;
     }
-    const hashedPassword = await password.hash(req.body.password);
-    const user = [req.body.username, req.body.name, req.body.email, hashedPassword];
-    if (req.body.username.length < 4 || req.body.username.length > 32) {
+    if (!validate.email(userObj.email)) {
+      res.json({
+        ok: false,
+        message: 'Your email is invalid.'
+      });
+      return;
+    }
+    if (!validate.username(userObj.username)) {
       res.json({
         ok: false,
         message: 'Your username must be between 4 and 32 characters.'
       });
       return;
     }
-    db.get('select * from users where Username = ? or Email = ?', [req.body.username, req.body.email], (getErr, row) => {
+
+    const hashedPassword = await password.encrypt(userObj.password);
+    const user = [userObj.username, userObj.name, userObj.email, hashedPassword];
+
+    db.get('select * from users where Username = ? or Email = ?', [userObj.username, userObj.email], (getErr, row) => {
       if (getErr) {
         res.status(400).json({
           error: getErr.message,

@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 
 const fs = require('fs');
 const path = require('path');
-const password = require('./utils/passwordEncryption');
+const {
+  password
+} = require('./utils/utilities');
 const db = require('./utils/database');
 
 const cookieParser = require('cookie-parser');
@@ -57,7 +59,7 @@ passport.use(new LocalStrategy(
   }
 ));
 
-function recursiveRoutes(folder) {
+(function recursiveRoutes(folder) {
   fs.readdirSync(folder).forEach((file) => {
     const fullName = path.join(folder, file);
     const stat = fs.lstatSync(fullName);
@@ -69,9 +71,7 @@ function recursiveRoutes(folder) {
       console.log(`Loaded ${file}`);
     }
   });
-}
-
-recursiveRoutes('routes');
+})('routes');
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
