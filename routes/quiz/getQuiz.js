@@ -114,9 +114,5 @@ module.exports = function (app) {
         }
       });
     });
-    res.json({
-      ok: true,
-      quiz: {}
-    });
   });
 }
