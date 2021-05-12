@@ -3,6 +3,13 @@ const db = require.main.require('./utils/database');
 module.exports = function (app) {
     app.post('/categories/:id/questions', (req, res) => {
         const question = req.body.question;
+        if (!question) {
+            res.json({
+                ok: false,
+                error: 'Please enter a question'
+            })
+            return;
+        }
         db.get("select * from questions where Question = ?", question, (getErr, row) => {
             if (getErr) {
                 res.status(400).json({
