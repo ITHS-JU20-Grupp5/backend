@@ -1,6 +1,7 @@
 const express = require('express');
 require('dotenv').config();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const fs = require('fs');
 const path = require('path');
@@ -18,6 +19,7 @@ const app = express();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
+app.use(cors());
 app.use(
   bodyParser.urlencoded({
     extended: false,

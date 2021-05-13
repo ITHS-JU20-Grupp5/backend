@@ -1,8 +1,10 @@
 const db = require.main.require('./utils/database');
-const utils = require.main.require('./utils/utilities');
+const {
+    verifyToken
+} = require.main.require('./utils/utilities');
 
 module.exports = function (app) {
-    app.get('/highscore', utils.isAuthenticated, (req, res) => {
+    app.get('/highscore', verifyToken, (req, res) => {
         let userId = req.user.Id;
         let scores = [];
         db.all('select * from user_scores where UserId = ?', [userId], function (err, rows) {

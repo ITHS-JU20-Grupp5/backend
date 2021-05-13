@@ -1,10 +1,10 @@
 const db = require.main.require('./utils/database');
 const {
-    isAuthenticated
+    verifyToken
 } = require.main.require('./utils/utilities');
 
 module.exports = function (app) {
-    app.get('/scores', isAuthenticated, (req, res) => {
+    app.get('/scores', verifyToken, (req, res) => {
         let userId = req.user.Id;
         let scores = [];
         db.all('select * from user_scores where UserId = ?', [userId], function (err, rows) {
