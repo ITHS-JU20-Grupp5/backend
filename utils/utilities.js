@@ -10,8 +10,8 @@ module.exports.validate = {
   },
   username: (username) => {
     return username.match(/\w{4,32}/);
-  }
-}
+  },
+};
 
 module.exports.password = {
   encrypt: async (password) => {
@@ -20,14 +20,14 @@ module.exports.password = {
   },
   verify: async (password, hashedPassword) => {
     return await bcrypt.compare(password, hashedPassword);
-  }
-}
+  },
+};
 
 module.exports.verifyToken = (req, res, next) => {
   let authHeader = req.headers['authorization'];
   if (!authHeader) {
     return res.status(403).json({
-      message: 'Missing authorization header'
+      message: 'Missing authorization header',
     });
   }
 
@@ -47,5 +47,5 @@ module.exports.verifyToken = (req, res, next) => {
     }
     req.userId = decoded.Id;
     next();
-  })
-}
+  });
+};

@@ -12,11 +12,15 @@ let db = new sqlite.Database(DBFILE, (err) => {
     throw err;
   }
   db.run(
-    'CREATE TABLE answers(Id integer primary key autoincrement, Answer text not null, Correct numeric default 0)',
+    'CREATE TABLE categories(Id integer primary key autoincrement, Category text not null)',
     cb
   );
   db.run(
-    'CREATE TABLE categories(Id integer primary key autoincrement, Category text not null)',
+    'CREATE TABLE questions(Id integer primary key autoincrement, Question text not null)',
+    cb
+  );
+  db.run(
+    'CREATE TABLE answers(Id integer primary key autoincrement, Answer text not null, Correct numeric default 0)',
     cb
   );
   db.run(
@@ -28,11 +32,11 @@ let db = new sqlite.Database(DBFILE, (err) => {
     cb
   );
   db.run(
-    'CREATE TABLE questions(Id integer primary key autoincrement, Question text not null)',
+    'CREATE TABLE scores(Id integer primary key autoincrement, Score integer not null, Date_Time text not null)',
     cb
   );
   db.run(
-    'CREATE TABLE scores(Id integer primary key autoincrement, Score integer not null, Date_Time text not null)',
+    'CREATE TABLE users(Id integer primary key autoincrement, Username text not null, Name text not null, Email text not null, Password text not null)',
     cb
   );
   db.run(
@@ -40,7 +44,7 @@ let db = new sqlite.Database(DBFILE, (err) => {
     cb
   );
   db.run(
-    'CREATE TABLE users(Id integer primary key autoincrement, Username text not null, Name text not null, Email text not null, Password text not null)',
+    'CREATE TABLE score_categories(ScoreId integer not null, CategoryId integer not null, primary key(ScoreId, CategoryId), foreign key(ScoreId) references scores(Id), foreign key(CategoryId) references categories(Id))',
     cb
   );
 });
