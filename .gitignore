@@ -117,3 +117,5 @@ dist
 
 # DB
 *.db
+
+data.json
