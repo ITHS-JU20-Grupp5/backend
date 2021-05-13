@@ -1,20 +1,21 @@
 const { password } = require.main.require('./utils/utilities');
 const jwt = require('jsonwebtoken');
+
 const db = require.main.require('./utils/database');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.post('/auth/login', async (req, res) => {
     const user = new Promise((resolve, reject) => {
       db.get('select * from users where Username = ?', [req.body.username], async (err, row) => {
         if (err) {
-          reject(`Error: ${err.message}`);
+          reject(new Error(err.message));
         }
         if (row) {
-          let verified = await password.verify(req.body.password, row.Password);
+          const verified = await password.verify(req.body.password, row.Password);
           if (verified) {
             resolve(row);
           }
-          reject('Invalid password');
+          reject(new Error('Invalid password'));
         }
       });
     });
@@ -28,7 +29,6 @@ module.exports = function (app) {
         res.json({
           user: response,
         });
-        return;
       })
       .catch((error) => {
         if (error) {

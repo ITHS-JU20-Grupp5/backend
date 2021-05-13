@@ -1,11 +1,9 @@
-const {
-  verifyToken
-} = require.main.require('./utils/utilities');
+const { verifyToken } = require.main.require('./utils/utilities');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.get('/auth', verifyToken, (req, res) => {
     res.json({
-      ok: true
+      ok: true,
     });
   });
-}
+};

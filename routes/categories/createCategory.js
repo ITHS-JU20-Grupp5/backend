@@ -1,6 +1,6 @@
 const db = require.main.require('./utils/database');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.post('/categories', (req, res) => {
     const category = req.body.category.toUpperCase();
     db.get('select * from categories where Category = ?', category, (getErr, row) => {
@@ -26,7 +26,7 @@ module.exports = function (app) {
         }
         res.json({
           ok: true,
-          id: this.lastID
+          id: this.lastID,
         });
       });
     });

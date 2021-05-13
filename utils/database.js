@@ -2,11 +2,9 @@ const sqlite = require('sqlite3');
 
 const DBFILE = './general-knowledge.db';
 
-let cb = function (err) {
-  return;
-};
+const cb = () => {};
 
-let db = new sqlite.Database(DBFILE, (err) => {
+const db = new sqlite.Database(DBFILE, (err) => {
   if (err) {
     console.error('Database Error', err.message);
     throw err;

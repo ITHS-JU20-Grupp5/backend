@@ -1,6 +1,6 @@
 const db = require.main.require('./utils/database');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.delete('/users/:id', (req, res) => {
     db.run('delete from users where Id = ?', req.params.id, function (err) {
       if (err) {

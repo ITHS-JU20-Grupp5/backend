@@ -1,14 +1,14 @@
 const db = require.main.require('./utils/database');
 const { verifyToken } = require.main.require('./utils/utilities');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.get('/scores', verifyToken, (req, res) => {
-    let userId = req.userId;
+    const { userId } = req;
     let scores = [];
     db.all(
       'select * from user_scores join score_categories where UserId = ? and score_categories.ScoreId = user_scores.ScoreId',
       [userId],
-      function (err, rows) {
+      (err, rows) => {
         if (err) {
           res.json({
             ok: false,
@@ -28,12 +28,13 @@ module.exports = function (app) {
           db.get(
             'select users.Id as UserId, Score from scores inner join users where scores.Id = ? and users.Id = ?',
             [junctionRow.ScoreId, junctionRow.UserId],
-            function (err, row) {
-              if (err) {
-                return res.json({
+            (getErr, row) => {
+              if (getErr) {
+                res.json({
                   ok: false,
-                  error: err.message,
+                  error: getErr.message,
                 });
+                return;
               }
               row.CategoryId = junctionRow.CategoryId;
               scores = [row, ...scores];

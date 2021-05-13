@@ -1,6 +1,6 @@
 const db = require.main.require('./utils/database');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.get('/users/:id', (req, res) => {
     db.get('select * from users where Id = ?', req.params.id, (err, row) => {
       if (err) {
@@ -15,8 +15,8 @@ module.exports = function (app) {
           id: row.Id,
           username: row.Username,
           name: row.Name,
-          email: row.Email
-        }
+          email: row.Email,
+        },
       });
     });
   });
