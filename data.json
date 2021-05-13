@@ -1,0 +1,64 @@
+[
+  {
+    "category": "someCategory",
+    "questions": [
+      {
+        "question": "someQuestion?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "correct": true
+          },
+          {
+            "answer": "No",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "question": "anotherQuestion?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "correct": true
+          },
+          {
+            "answer": "No",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "anotherCategory",
+    "questions": [
+      {
+        "question": "someQuestionForAnotherCategory?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "correct": true
+          },
+          {
+            "answer": "No",
+            "correct": false
+          }
+        ]
+      },
+      {
+        "question": "anotherQuestionForAnotherCategory?",
+        "answers": [
+          {
+            "answer": "Yes",
+            "correct": true
+          },
+          {
+            "answer": "No",
+            "correct": false
+          }
+        ]
+      }
+    ]
+  }
+]
