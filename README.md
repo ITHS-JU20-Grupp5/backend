@@ -5,7 +5,7 @@
 Rename the
 
 ```
-.env.example
+example.env
 ```
 
 file to:
@@ -20,10 +20,16 @@ Run the following command to start a dev server:
 npm run dev
 ```
 
-To populate the database with some dummy data run the following command while the server is running:
+To populate the database with some [dummy data](#Dummy-Data) run the following command:
 
 ```shell
-node utils/dummyData
+npm run db:load:test
+```
+
+If you already have some data you want to populate the database with you can run the following command
+
+```shell
+npm run db:load [pathToFileFromRoot]
 ```
 
 ### Dummy data

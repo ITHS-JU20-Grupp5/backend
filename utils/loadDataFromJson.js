@@ -6,7 +6,11 @@ let jsonFilePath = process.argv.splice(2)[0];
 
 const data = require(`../${jsonFilePath}`);
 
-data.forEach(async (obj) => {
+data.users.forEach(async (user) => {
+  http.post('/users', user);
+});
+
+data.quiz.forEach(async (obj) => {
   const { category, questions } = obj;
   const categoryPost = await http.post('/categories', { category });
   questions.forEach(async (questionObj) => {
