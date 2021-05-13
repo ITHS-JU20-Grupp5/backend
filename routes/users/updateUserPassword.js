@@ -1,7 +1,7 @@
 const db = require.main.require('./utils/database');
 const { verifyToken } = require.main.require('./utils/utilities');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.patch('/users', verifyToken, (req, res) => {
     db.run(
       'update users set password = ? where Id = ?',

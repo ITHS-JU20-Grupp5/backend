@@ -1,6 +1,6 @@
 const db = require.main.require('./utils/database');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.get('/categories', (req, res) => {
     db.all('select * from categories', [], (err, rows) => {
       if (err) {

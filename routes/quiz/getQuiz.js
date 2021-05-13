@@ -1,8 +1,9 @@
 const axios = require('axios');
+
 const db = require.main.require('./utils/database');
 
-module.exports = function (app) {
-  app.post('/quiz', function (req, res) {
+module.exports = (app) => {
+  app.post('/quiz', (req, res) => {
     const options = {
       category: req.body.category || 'RANDOM',
       // Keep for later
@@ -12,36 +13,48 @@ module.exports = function (app) {
       // easy = 2 answers
       // normal = 4 answers
       // hard = 6 answers
-      difficulty: req.body.difficulty || 'easy'
+      difficulty: req.body.difficulty || 'easy',
+    };
+
+    let answersAmount;
+
+    switch (options.difficulty.toUpperCase()) {
+      case 'NORMAL':
+        answersAmount = 4;
+        break;
+      case 'HARD':
+        answersAmount = 6;
+        break;
+      default:
+        answersAmount = 2;
+        break;
     }
 
-    let answersAmount = options.difficulty.toUpperCase() === 'HARD' ? 6 : (options.difficulty.toUpperCase() === 'NORMAL' ? 4 : 2);
+    const quiz = {};
 
-    let quiz = {};
-
-    db.all('select Category from categories', [], function (err, rows) {
-      let categories = rows.map(row => row.Category);
+    db.all('select Category from categories', [], (err, rows) => {
+      const categories = rows.map((row) => row.Category);
       // Select query for categories
-      let query = 'select Id from categories where Category = ?';
-      let params = [];
+      const query = 'select Id from categories where Category = ?';
+      const params = [];
       if (options.category !== 'RANDOM') {
         params.push(options.category.toUpperCase());
       } else {
-        let cat = categories[Math.floor(Math.random() * categories.length)];
+        const cat = categories[Math.floor(Math.random() * categories.length)];
         options.category = cat;
         params.push(cat);
       }
-      db.get(query, params, async function (err, row) {
-        if (err) {
+      db.get(query, params, async (getErr, row) => {
+        if (getErr) {
           res.json({
-            error: err.message,
+            error: getErr.message,
           });
           return;
         }
         if (!row) {
           res.json({
             ok: true,
-            quiz: {}
+            quiz: {},
           });
           return;
         }
@@ -51,36 +64,31 @@ module.exports = function (app) {
           let index = 0;
           let tempArr = [];
           response.questions.forEach(async (question) => {
-            axios.get(`http://localhost:3000/questions/${question.Id}/answers`)
-              .then(response => {
-                return response.data.answers
-              })
-              .then(answersData => {
+            axios
+              .get(`http://localhost:3000/questions/${question.Id}/answers`)
+              .then((httpRes) => httpRes.data.answers)
+              .then((answersData) => {
                 // Create an empty array to use later
-                let answers = [];
+                const answers = [];
 
                 // Add the correct answer to the empty array
-                answers.push(answersData.find(item => {
-                  return item.Correct === 1;
-                }));
+                answers.push(answersData.find((item) => item.Correct === 1));
 
                 // Filter out the correct answer and create a new array with the incorrect answers
-                let incorrect = answersData.filter(item => {
-                  return item.Correct !== 1;
-                });
+                const incorrect = answersData.filter((item) => item.Correct !== 1);
 
                 // Loop through the incorrect answers and add the necessary amount to the array
                 for (let i = 0; i < answersAmount - 1; i++) {
                   answers.push(incorrect[Math.floor(Math.random() * incorrect.length)]);
                 }
 
-                let shuffledAnswers = answers
-                  .map(a => ({
+                const shuffledAnswers = answers
+                  .map((a) => ({
                     sort: Math.random(),
-                    value: a
+                    value: a,
                   }))
                   .sort((a, b) => a.sort - b.sort)
-                  .map(a => a.value);
+                  .map((a) => a.value);
 
                 // Add the answers to the question object
                 question.Answers = shuffledAnswers;
@@ -96,18 +104,16 @@ module.exports = function (app) {
                   quiz.questions = tempArr;
                   res.json({
                     ok: true,
-                    quiz
+                    quiz,
                   });
-                  return;
                 }
               })
-              .catch(error => {
+              .catch((error) => {
                 if (error) {
                   res.json({
                     ok: false,
-                    error: error.message
+                    error: error.message,
                   });
-                  return;
                 }
               });
           });
@@ -115,4 +121,4 @@ module.exports = function (app) {
       });
     });
   });
-}
+};

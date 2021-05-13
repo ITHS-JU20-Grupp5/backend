@@ -1,34 +1,39 @@
 const db = require.main.require('./utils/database');
-module.exports = function (app) {
-    app.delete('/questions/:id', (req, res) => {
-        db.run('delete from questions where Id = ?', req.params.id, function (err) {
-            if (err) {
-                res.status(400).json({
-                    error: err.message,
-                });
-                return;
-            }
-            db.run('delete from category_questions where QuestionId = ?', req.params.id, function (err) {
-                if (err) {
-                    res.json({
-                        ok: false,
-                        error: err.message
-                    });
-                    return;
-                }
-                db.run('delete from from question_answers where QuestionId = ?', req.params.id, function (err) {
-                    if (err) {
-                        res.json({
-                            ok: false,
-                            error: err.message
-                        });
-                        return;
-                    }
-                    res.json({
-                        ok: true
-                    });
-                });
-            });
+
+module.exports = (app) => {
+  app.delete('/questions/:id', (req, res) => {
+    db.run('delete from questions where Id = ?', req.params.id, (err) => {
+      if (err) {
+        res.status(400).json({
+          error: err.message,
         });
+        return;
+      }
+      db.run('delete from category_questions where QuestionId = ?', req.params.id, (catJuncErr) => {
+        if (catJuncErr) {
+          res.json({
+            ok: false,
+            error: catJuncErr.message,
+          });
+          return;
+        }
+        db.run(
+          'delete from from question_answers where QuestionId = ?',
+          req.params.id,
+          (quesJuncErr) => {
+            if (quesJuncErr) {
+              res.json({
+                ok: false,
+                error: quesJuncErr.message,
+              });
+              return;
+            }
+            res.json({
+              ok: true,
+            });
+          }
+        );
+      });
     });
-}
+  });
+};

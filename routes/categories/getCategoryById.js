@@ -1,6 +1,6 @@
 const db = require.main.require('./utils/database');
 
-module.exports = function (app) {
+module.exports = (app) => {
   app.get('/categories/:id', (req, res) => {
     db.get('select * from categories where Id = ?', req.params.id, (err, row) => {
       if (err) {

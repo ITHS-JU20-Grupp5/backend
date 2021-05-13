@@ -1,12 +1,12 @@
 const db = require.main.require('./utils/database');
 
-module.exports = function (app) {
-  app.get('/categories/:id/questions', function (req, res) {
+module.exports = (app) => {
+  app.get('/categories/:id/questions', (req, res) => {
     let questions = [];
     db.all(
       'select * from category_questions where CategoryId = ?',
       [req.params.id],
-      function (err, rows) {
+      (err, rows) => {
         if (err) {
           res.json({
             ok: false,
@@ -14,13 +14,13 @@ module.exports = function (app) {
           });
         }
         let index = 0;
-        let amount = req.query.questions || Math.min(rows.length, 5);
+        const amount = req.query.questions || Math.min(rows.length, 5);
         rows.forEach((row) => {
           db.get(
             'select questions.Id, Question from questions inner join categories where questions.Id = ? and categories.Id = ? order by RANDOM()',
             [row.QuestionId, row.CategoryId],
-            function (err, row) {
-              questions = [row, ...questions];
+            (getErr, getRow) => {
+              questions = [getRow, ...questions];
               index++;
               if (index === amount) {
                 res.json({
