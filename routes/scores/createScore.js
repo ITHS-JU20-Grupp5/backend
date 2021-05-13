@@ -1,8 +1,10 @@
 const db = require.main.require('./utils/database');
-const utils = require.main.require('./utils/utilities');
+const {
+  verifyToken
+} = require.main.require('./utils/utilities');
 
 module.exports = function (app) {
-  app.post('/scores', utils.isAuthenticated, (req, res) => {
+  app.post('/scores', verifyToken, (req, res) => {
     const score = req.body.score;
     db.get('select * from scores where Score = ?', score, (getErr, row) => {
       if (getErr) {

@@ -1,11 +1,11 @@
 const {
-  isAuthenticated
+  verifyToken
 } = require.main.require('./utils/utilities');
 
 module.exports = function (app) {
-  app.get('/test/admin', isAuthenticated, (req, res) => {
+  app.get('/auth', verifyToken, (req, res) => {
     res.json({
-      msg: `Welcome ${req.user.Name}`
+      ok: true
     });
   });
 }

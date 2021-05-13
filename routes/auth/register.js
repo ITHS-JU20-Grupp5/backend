@@ -2,7 +2,7 @@ const db = require.main.require('./utils/database');
 const axios = require('axios');
 
 module.exports = function (app) {
-  app.post('/register', function (req, res) {
+  app.post('/auth/register', function (req, res) {
     axios.post('http://localhost:3000/users', {
         username: req.body.username,
         password: req.body.password,
