@@ -23,7 +23,6 @@ module.exports = (app) => {
           });
           return;
         }
-        console.log(rows);
         rows.forEach((junctionRow) => {
           db.get(
             'select users.Id as UserId, Score from scores inner join users where scores.Id = ? and users.Id = ?',
