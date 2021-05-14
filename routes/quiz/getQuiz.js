@@ -66,8 +66,8 @@ module.exports = (app) => {
           response.questions.forEach(async (question) => {
             axios
               .get(`http://localhost:3000/questions/${question.Id}/answers`)
-              .then((httpRes) => httpRes.data.answers)
-              .then((answersData) => {
+              .then((httpRes) => {
+                const answersData = httpRes.data.answers;
                 // Create an empty array to use later
                 const answers = [];
 
