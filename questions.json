@@ -1,0 +1,1342 @@
+{
+  "users": [],
+  "quiz": [
+    {
+      "category": "Allmän Fakta",
+      "questions": [
+        {
+          "question": "Dan Aykroyd skrev original konceptet till vilket franchise i början av 80-talet?",
+          "answers": [
+            {
+              "answer": "GhostBusters",
+              "correct": true
+            },
+            {
+              "answer": "Marvel Cinematic Universe",
+              "correct": false
+            },
+            {
+              "answer": "Rambo",
+              "correct": false
+            },
+            {
+              "answer": "The Fast and the Furious",
+              "correct": false
+            },
+            {
+              "answer": "Batman",
+              "correct": false
+            },
+            {
+              "answer": "The Never Ending Story",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Hur många hjärtan har en bläckfisk?",
+          "answers": [
+            {
+              "answer": "1",
+              "correct": false
+            },
+            {
+              "answer": "2",
+              "correct": false
+            },
+            {
+              "answer": "3",
+              "correct": true
+            },
+            {
+              "answer": "4",
+              "correct": false
+            },
+            {
+              "answer": "5",
+              "correct": false
+            },
+            {
+              "answer": "6",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Hur många sidor har en oktagon?",
+          "answers": [
+            {
+              "answer": "3",
+              "correct": false
+            },
+
+            {
+              "answer": "4",
+              "correct": false
+            },
+            {
+              "answer": "5",
+              "correct": false
+            },
+            {
+              "answer": "6",
+              "correct": false
+            },
+            {
+              "answer": "7",
+              "correct": false
+            },
+            {
+              "answer": "8",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "question": "När lanserades den första iPhonen?",
+          "answers": [
+            {
+              "answer": "9 januari 2007",
+              "correct": true
+            },
+            {
+              "answer": "20 oktober 2006",
+              "correct": false
+            },
+            {
+              "answer": "15 mars 2008",
+              "correct": false
+            },
+            {
+              "answer": "29 juni 2007",
+              "correct": false
+            },
+            {
+              "answer": "15 december 2005",
+              "correct": false
+            },
+            {
+              "answer": "23 maj 2006",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vad heter den världskända serietecknade katten som älskar lasange?",
+          "answers": [
+            {
+              "answer": "Gustaf",
+              "correct": true
+            },
+            {
+              "answer": "Pumba",
+              "correct": false
+            },
+            {
+              "answer": "Prosit",
+              "correct": false
+            },
+            {
+              "answer": "Rattata",
+              "correct": false
+            },
+            {
+              "answer": "Nalle Puh",
+              "correct": false
+            },
+            {
+              "answer": "Bamse",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vad jobbade Al Capone med enligt hans visitkort?",
+          "answers": [
+            {
+              "answer": "Barberare",
+              "correct": false
+            },
+            {
+              "answer": "Polis",
+              "correct": false
+            },
+            {
+              "answer": "Programmerare",
+              "correct": false
+            },
+            {
+              "answer": "Bartender",
+              "correct": false
+            },
+            {
+              "answer": "Möbelförsäljare",
+              "correct": true
+            },
+            {
+              "answer": "Ingenjör",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vad heter den första presidenten i USA?",
+          "answers": [
+            {
+              "answer": "Thomas Jefferson",
+              "correct": false
+            },
+            {
+              "answer": "John Addams",
+              "correct": false
+            },
+            {
+              "answer": "Abraham Lincoln",
+              "correct": false
+            },
+            {
+              "answer": "Donald Trump",
+              "correct": false
+            },
+            {
+              "answer": "George Washington",
+              "correct": true
+            },
+            {
+              "answer": "Richard Nixon",
+              "correct": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Musik",
+      "questions": [
+        {
+          "question": "Eine Klein Nachtmusik var skrivit av vilken kompositer",
+          "answers": [
+            {
+              "answer": "Mozart",
+              "correct": true
+            },
+            {
+              "answer": "Beethoven",
+              "correct": false
+            },
+            {
+              "answer": "Tchaikovsky",
+              "correct": false
+            },
+            {
+              "answer": "J.S. Bach",
+              "correct": false
+            },
+            {
+              "answer": "J.C.E. Bach",
+              "correct": false
+            },
+            {
+              "answer": "Haydn",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "I vilket år spelade Jimi Hendrix the Star Spangled Banner på Woodstock?",
+          "answers": [
+            {
+              "answer": "1969",
+              "correct": true
+            },
+            {
+              "answer": "1967",
+              "correct": false
+            },
+            {
+              "answer": "1968",
+              "correct": false
+            },
+            {
+              "answer": "1970",
+              "correct": false
+            },
+            {
+              "answer": "1971",
+              "correct": false
+            },
+            {
+              "answer": "1966",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vad heter Frank Zappa's band som började i 60-talet?",
+          "answers": [
+            {
+              "answer": "The Mothers of Invention",
+              "correct": true
+            },
+            {
+              "answer": "The Mothers of Death",
+              "correct": false
+            },
+            {
+              "answer": "The Fathers of Invention",
+              "correct": false
+            },
+            {
+              "answer": "The Sons of Anarchy",
+              "correct": false
+            },
+            {
+              "answer": "The Revolution",
+              "correct": false
+            },
+            {
+              "answer": "The Wizards",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vad hette sångaren i Queen?",
+          "answers": [
+            {
+              "answer": "Freddie Mercury",
+              "correct": true
+            },
+            {
+              "answer": "Phil Hewson",
+              "correct": false
+            },
+            {
+              "answer": "Paul McCartney",
+              "correct": false
+            },
+            {
+              "answer": "Saul Hudson",
+              "correct": false
+            },
+            {
+              "answer": "Brian May",
+              "correct": false
+            },
+            {
+              "answer": "Roger Daltrey",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vem spelar trummor i bandet Metallica?",
+          "answers": [
+            {
+              "answer": "Lars Ulrich",
+              "correct": true
+            },
+            {
+              "answer": "Jason Newsted",
+              "correct": false
+            },
+            {
+              "answer": "Kirk Hammett",
+              "correct": false
+            },
+            {
+              "answer": "Cliff Burton",
+              "correct": false
+            },
+            {
+              "answer": "James Hetfield",
+              "correct": false
+            },
+            {
+              "answer": "Robert Trujillo",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilken kände gitarist spelade riffen på Michael Jackson's Beat It?",
+          "answers": [
+            {
+              "answer": "Steve Lukather",
+              "correct": true
+            },
+            {
+              "answer": "Eddie Van Halen",
+              "correct": false
+            },
+            {
+              "answer": "Slash",
+              "correct": false
+            },
+            {
+              "answer": "Keith Richards",
+              "correct": false
+            },
+            {
+              "answer": "Joe Walsh",
+              "correct": false
+            },
+            {
+              "answer": "Steve Vai",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vem uppfann Stratocater gitaren?",
+          "answers": [
+            {
+              "answer": "Leo Fender",
+              "correct": true
+            },
+            {
+              "answer": "Orville Gibson",
+              "correct": false
+            },
+            {
+              "answer": "Wayne Charvel",
+              "correct": false
+            },
+            {
+              "answer": "Grover Jackson",
+              "correct": false
+            },
+            {
+              "answer": "Dave Schecter",
+              "correct": false
+            },
+            {
+              "answer": "Friedrich Gretsch",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vem skrev musiken till filmen Gladiator?",
+          "answers": [
+            {
+              "answer": "Hans Zimmer",
+              "correct": true
+            },
+            {
+              "answer": "John Williams",
+              "correct": false
+            },
+            {
+              "answer": "Danny Elfman",
+              "correct": false
+            },
+            {
+              "answer": "Howard Shore",
+              "correct": false
+            },
+            {
+              "answer": "James Horner",
+              "correct": false
+            },
+            {
+              "answer": "Michael Kamen",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "C, G, D, A... Vad komma näst i femtedelcirkel?",
+          "answers": [
+            {
+              "answer": "E",
+              "correct": true
+            },
+            {
+              "answer": "B",
+              "correct": false
+            },
+            {
+              "answer": "F#",
+              "correct": false
+            },
+            {
+              "answer": "C#",
+              "correct": false
+            },
+            {
+              "answer": "Ab",
+              "correct": false
+            },
+            {
+              "answer": "Eb",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilken så-kallade mode låta mest Spansk?",
+          "answers": [
+            {
+              "answer": "Phrygian",
+              "correct": true
+            },
+            {
+              "answer": "Locrian",
+              "correct": false
+            },
+            {
+              "answer": "Ionian",
+              "correct": false
+            },
+            {
+              "answer": "Mixolydian",
+              "correct": false
+            },
+            {
+              "answer": "Lydian",
+              "correct": false
+            },
+            {
+              "answer": "Aeolian",
+              "correct": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Historia",
+      "questions": [
+        {
+          "question": "Hur många människor rymde de största gaskamrarna i koncentrationslägret Auschwitz?",
+          "answers": [
+            {
+              "answer": "500",
+              "correct": false
+            },
+            {
+              "answer": "1000",
+              "correct": false
+            },
+            {
+              "answer": "1500",
+              "correct": false
+            },
+            {
+              "answer": "2000",
+              "correct": false
+            },
+            {
+              "answer": "2500",
+              "correct": false
+            },
+            {
+              "answer": "3000",
+              "correct": true
+            }
+          ]
+        },
+        {
+          "question": "När grundades Kalmarunionen?",
+          "answers": [
+            {
+              "answer": "1401",
+              "correct": false
+            },
+            {
+              "answer": "1397",
+              "correct": true
+            },
+            {
+              "answer": "1352",
+              "correct": false
+            },
+            {
+              "answer": "1472",
+              "correct": false
+            },
+            {
+              "answer": "1576",
+              "correct": false
+            },
+            {
+              "answer": "1601",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "När skedde landstigningen av Normandie (D-day)?",
+          "answers": [
+            {
+              "answer": "6 juni 1944",
+              "correct": true
+            },
+            {
+              "answer": "6 juli 1944",
+              "correct": false
+            },
+            {
+              "answer": "6 juni 1943",
+              "correct": false
+            },
+            {
+              "answer": "6 augusti 1944",
+              "correct": false
+            },
+            {
+              "answer": "6 maj 1944",
+              "correct": false
+            },
+            {
+              "answer": "6 juni 1945",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Under vilket år sjönk titanic?",
+          "answers": [
+            {
+              "answer": "1912",
+              "correct": true
+            },
+            {
+              "answer": "1911",
+              "correct": false
+            },
+            {
+              "answer": "1910",
+              "correct": false
+            },
+            {
+              "answer": "1913",
+              "correct": false
+            },
+            {
+              "answer": "1914",
+              "correct": false
+            },
+            {
+              "answer": "1915",
+              "correct": false
+            },
+            {
+              "answer": "1916",
+              "correct": false
+            },
+            {
+              "answer": "1909",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vad heter kungen från gamla Macedonian som besegrade perserna och grundade flera stader i sitt egen namn?",
+          "answers": [
+            {
+              "answer": "Alexander the Great",
+              "correct": true
+            },
+            {
+              "answer": "Filip II",
+              "correct": false
+            },
+            {
+              "answer": "Leonidas",
+              "correct": false
+            },
+            {
+              "answer": "Agamemnon",
+              "correct": false
+            },
+            {
+              "answer": "Menelaus",
+              "correct": false
+            },
+            {
+              "answer": "Pericles",
+              "correct": false
+            },
+            {
+              "answer": "Socrates",
+              "correct": false
+            },
+            {
+              "answer": "Ptolemy",
+              "correct": false
+            },
+            {
+              "answer": "Cleitus the Black",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vem var Gamla Roms första Kejsare?",
+          "answers": [
+            {
+              "answer": "Augustus",
+              "correct": true
+            },
+            {
+              "answer": "Julius Caesar",
+              "correct": false
+            },
+            {
+              "answer": "Trajan",
+              "correct": false
+            },
+            {
+              "answer": "Claudius",
+              "correct": false
+            },
+            {
+              "answer": "Tiberius",
+              "correct": false
+            },
+            {
+              "answer": "Pompey Magnus",
+              "correct": false
+            },
+            {
+              "answer": "Marcus Aurelius",
+              "correct": false
+            },
+            {
+              "answer": "Marcus Agrippa",
+              "correct": false
+            },
+            {
+              "answer": "Caligula",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilken pharaoh uppfann en helt ny monotheistisk religion?",
+          "answers": [
+            {
+              "answer": "Akhenaten",
+              "correct": true
+            },
+            {
+              "answer": "Rameses II",
+              "correct": false
+            },
+            {
+              "answer": "Amenhotep III",
+              "correct": false
+            },
+            {
+              "answer": "Tutankhamen",
+              "correct": false
+            },
+            {
+              "answer": "Seti I",
+              "correct": false
+            },
+            {
+              "answer": "Cleopatra",
+              "correct": false
+            },
+            {
+              "answer": "Khufu",
+              "correct": false
+            },
+            {
+              "answer": "Tuthmoses",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilken spansk kung beslutade att skapa det museum som i dag är känt som Pradomuseet?",
+          "answers": [
+            {
+              "answer": "Ferdinand VI",
+              "correct": false
+            },
+            {
+              "answer": "Heinz II",
+              "correct": false
+            },
+            {
+              "answer": "Karl I",
+              "correct": false
+            },
+            {
+              "answer": "Ferdinand VII",
+              "correct": true
+            },
+            {
+              "answer": "Gustav IV",
+              "correct": false
+            },
+            {
+              "answer": "Gustav V",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilket år slutade amerikanska inbördeskriget?",
+          "answers": [
+            {
+              "answer": "1865",
+              "correct": true
+            },
+            {
+              "answer": "1890",
+              "correct": false
+            },
+            {
+              "answer": "1850",
+              "correct": false
+            },
+            {
+              "answer": "1872",
+              "correct": false
+            },
+            {
+              "answer": "1823",
+              "correct": false
+            },
+            {
+              "answer": "1900",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vem var högsta befälhavare över alla Allied Forces under slutet av andra världskriget?",
+          "answers": [
+            {
+              "answer": "Gen. Eisenhauer",
+              "correct": true
+            },
+            {
+              "answer": "President Truman",
+              "correct": false
+            },
+            {
+              "answer": "Prime Minister Churchill",
+              "correct": false
+            },
+            {
+              "answer": "Gen. Chaos",
+              "correct": false
+            },
+            {
+              "answer": "President Roosevelt",
+              "correct": false
+            },
+            {
+              "answer": "Gen. Montgomery",
+              "correct": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Sport",
+      "questions": [
+        {
+          "question": "Hur många guldmedaljer är rekordet under ett och samma OS mästerskap?",
+          "answers": [
+            {
+              "answer": "8",
+              "correct": true
+            },
+            {
+              "answer": "4",
+              "correct": false
+            },
+            {
+              "answer": "6",
+              "correct": false
+            },
+            {
+              "answer": "10",
+              "correct": false
+            },
+            {
+              "answer": "12",
+              "correct": false
+            },
+            {
+              "answer": "9",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Hur många bilar finns det på startfältet i ett F1 lopp?",
+          "answers": [
+            {
+              "answer": "20",
+              "correct": true
+            },
+            {
+              "answer": "10",
+              "correct": false
+            },
+            {
+              "answer": "30",
+              "correct": false
+            },
+            {
+              "answer": "15",
+              "correct": false
+            },
+            {
+              "answer": "25",
+              "correct": false
+            },
+            {
+              "answer": "35",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Hur många timmar varade den lägsta hockeymatchen någonsin?",
+          "answers": [
+            {
+              "answer": "8",
+              "correct": true
+            },
+            {
+              "answer": "3",
+              "correct": false
+            },
+            {
+              "answer": "6",
+              "correct": false
+            },
+            {
+              "answer": "12",
+              "correct": false
+            },
+            {
+              "answer": "5",
+              "correct": false
+            },
+            {
+              "answer": "9",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "När startade Allsvenskan?",
+          "answers": [
+            {
+              "answer": "1924",
+              "correct": true
+            },
+            {
+              "answer": "1904",
+              "correct": false
+            },
+            {
+              "answer": "1896",
+              "correct": false
+            },
+            {
+              "answer": "1939",
+              "correct": false
+            },
+            {
+              "answer": "1854",
+              "correct": false
+            },
+            {
+              "answer": "1736",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vem är den bäste tennisspelaren genom tiderna?",
+          "answers": [
+            {
+              "answer": "Roger Federer",
+              "correct": true
+            },
+            {
+              "answer": "Rafael Nadal",
+              "correct": false
+            },
+            {
+              "answer": "Novak Djokovic",
+              "correct": false
+            },
+            {
+              "answer": "Björn Borg",
+              "correct": false
+            },
+            {
+              "answer": "Andre Agassi",
+              "correct": false
+            },
+            {
+              "answer": "John McEnroe",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vem har gjort mest mål i Fotbolls VM mästerskapen någonsin?",
+          "answers": [
+            {
+              "answer": "Miroslav Klose",
+              "correct": true
+            },
+            {
+              "answer": "Pelé",
+              "correct": false
+            },
+            {
+              "answer": "Ronaldo",
+              "correct": false
+            },
+            {
+              "answer": "David Beckham",
+              "correct": false
+            },
+            {
+              "answer": "Thomas Müller",
+              "correct": false
+            },
+            {
+              "answer": "David Villa",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilket av följande lag är INTE representerat av en stjärna i Champions Leagues logo?",
+          "answers": [
+            {
+              "answer": "Barcelona",
+              "correct": true
+            },
+            {
+              "answer": "AC Milan",
+              "correct": false
+            },
+            {
+              "answer": "IFK Göteborg",
+              "correct": false
+            },
+            {
+              "answer": "Porto",
+              "correct": false
+            },
+            {
+              "answer": "PSV Eindhoven",
+              "correct": false
+            },
+            {
+              "answer": "Rangers",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilket lag har Sven-Göran Eriksson Inte tränat?",
+          "answers": [
+            {
+              "answer": "Juventus",
+              "correct": true
+            },
+            {
+              "answer": "Degerfors",
+              "correct": false
+            },
+            {
+              "answer": "IFK Göteborg",
+              "correct": false
+            },
+            {
+              "answer": "Roma",
+              "correct": false
+            },
+            {
+              "answer": "Benfica",
+              "correct": false
+            },
+            {
+              "answer": "Leicester City",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vad kalls Nya Zeelands herrlandslag i rugby?",
+          "answers": [
+            {
+              "answer": "All Blacks",
+              "correct": true
+            },
+            {
+              "answer": "Wallabies",
+              "correct": false
+            },
+            {
+              "answer": "Blues, red and whites",
+              "correct": false
+            },
+            {
+              "answer": "Les Blues",
+              "correct": false
+            },
+            {
+              "answer": "Les Hippos",
+              "correct": false
+            },
+            {
+              "answer": "The thistles",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vad kallas Sveriges landslag i hockey?",
+          "answers": [
+            {
+              "answer": "Tre kronor",
+              "correct": true
+            },
+            {
+              "answer": "Vikingarna",
+              "correct": false
+            },
+            {
+              "answer": "IKEA",
+              "correct": false
+            },
+            {
+              "answer": "Blågult",
+              "correct": false
+            },
+            {
+              "answer": "Korsriddarna",
+              "correct": false
+            },
+            {
+              "answer": "Ismännen",
+              "correct": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "category": "Geografi",
+      "questions": [
+        {
+          "question": "I vilket land ligger vandringsleden Milfort Track?",
+          "answers": [
+            {
+              "answer": "USA",
+              "correct": false
+            },
+            {
+              "answer": "Sydafrika",
+              "correct": false
+            },
+            {
+              "answer": "Kanada",
+              "correct": false
+            },
+            {
+              "answer": "Australien",
+              "correct": false
+            },
+            {
+              "answer": "Nya Zeeland",
+              "correct": true
+            },
+            {
+              "answer": "Storbritannien",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "I vilket land ligger vulkanen Etna?",
+          "answers": [
+            {
+              "answer": "Island",
+              "correct": false
+            },
+            {
+              "answer": "Italien",
+              "correct": true
+            },
+            {
+              "answer": "Costa Rica",
+              "correct": false
+            },
+            {
+              "answer": "Teneriffa",
+              "correct": false
+            },
+            {
+              "answer": "Ecuador",
+              "correct": false
+            },
+            {
+              "answer": "Indonesien",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilken är den tredje största staden i USA?",
+          "answers": [
+            {
+              "answer": "Chicago",
+              "correct": true
+            },
+            {
+              "answer": "New York",
+              "correct": false
+            },
+            {
+              "answer": "Los Angeles",
+              "correct": false
+            },
+            {
+              "answer": "San Fransisco",
+              "correct": false
+            },
+            {
+              "answer": "Baltimore",
+              "correct": false
+            },
+            {
+              "answer": "Houston",
+              "correct": false
+            },
+            {
+              "answer": "Buffalo",
+              "correct": false
+            },
+            {
+              "answer": "Washington D.C.",
+              "correct": false
+            },
+            {
+              "answer": "Seattle",
+              "correct": false
+            },
+            {
+              "answer": "San Diego",
+              "correct": false
+            },
+            {
+              "answer": "Miami",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilken är världens största stad?",
+          "answers": [
+            {
+              "answer": "Delhi",
+              "correct": false
+            },
+            {
+              "answer": "Tokyo",
+              "correct": true
+            },
+            {
+              "answer": "Jakarta",
+              "correct": false
+            },
+            {
+              "answer": "Seoul",
+              "correct": false
+            },
+            {
+              "answer": "Shanghai",
+              "correct": false
+            },
+            {
+              "answer": "New York",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilken av de amerikanska delstaterna är folkrikast?",
+          "answers": [
+            {
+              "answer": "Pennsylvania",
+              "correct": false
+            },
+            {
+              "answer": "Kalifornien",
+              "correct": true
+            },
+            {
+              "answer": "New York",
+              "correct": false
+            },
+            {
+              "answer": "Florida",
+              "correct": false
+            },
+            {
+              "answer": "Texas",
+              "correct": false
+            },
+            {
+              "answer": "Washington",
+              "correct": false
+            }
+          ]
+        },
+        {
+          "question": "Vilken kontinent ligger Kanarieöarna på?",
+          "answers": [
+            {
+              "answer": "Europa",
+              "correct": false
+            },
+            {
+              "answer": "Afrika",
+              "correct": true
+            },
+            {
+              "answer": "Nord Amerika",
+              "correct": false
+            },
+            {
+              "answer": "Syd Amerika",
+              "correct": false
+            },
+            {
+              "answer": "Asien",
+              "correct": false
+            },
+            {
+              "answer": "Antarktis",
+              "correct": false
+            },
+            {
+              "answer": "Oceanien",
+              "correct": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

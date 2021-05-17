@@ -28,7 +28,7 @@ module.exports = (app) => {
             }
             db.run(
               'insert into score_categories (ScoreId, CategoryId) values (?, (select Id from categories where Category = ?))',
-              [scoreId, category],
+              [scoreId, category.toUpperCase()],
               (scoreCatErr) => {
                 if (scoreCatErr) {
                   res.json({
