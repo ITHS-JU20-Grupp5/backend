@@ -78,8 +78,14 @@ module.exports = (app) => {
                 const incorrect = answersData.filter((item) => item.Correct !== 1);
 
                 // Loop through the incorrect answers and add the necessary amount to the array
-                for (let i = 0; i < answersAmount - 1; i++) {
-                  answers.push(incorrect[Math.floor(Math.random() * incorrect.length)]);
+                let incorrectTemp = 0;
+                while (incorrectTemp < answersAmount - 1) {
+                  const incorrectIndex = Math.floor(Math.random() * incorrect.length);
+                  // Ensure that the same answer doesn't get added twice
+                  if (!answers.includes(incorrect[incorrectIndex])) {
+                    answers.push(incorrect[incorrectIndex]);
+                    incorrectTemp++;
+                  }
                 }
 
                 const shuffledAnswers = answers
