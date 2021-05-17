@@ -1,0 +1,34 @@
+{
+  "Category": "Allmän Fakta",
+  "Questions": [
+    {
+      "Title": "Dan Aykroyd skrev original konceptet till vilket franchise i början av 80-talet?",
+      "Answers": [
+        {
+          "Body": "GhostBusters",
+          "Correct": "true"
+        },
+        {
+          "Body": "",
+          "Correct": "false"
+        },
+        {
+          "Body": "",
+          "Correct": "false"
+        },
+        {
+          "Body": "",
+          "Correct": "false"
+        },
+        {
+          "Body": "",
+          "Correct": "false"
+        },
+        {
+          "Body": "",
+          "Correct": "false"
+        }
+      ]
+    }
+  ]
+}
