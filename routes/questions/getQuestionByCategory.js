@@ -9,7 +9,7 @@ module.exports = (app) => {
       (err, rows) => {
         if (err) {
           res.status(400).json({
-            error: err.message
+            error: err.message,
           });
         }
         let index = 0;
@@ -23,7 +23,7 @@ module.exports = (app) => {
               index++;
               if (index === amount) {
                 res.json({
-                  questions
+                  questions,
                 });
               }
             }

@@ -5,12 +5,12 @@ module.exports = (app) => {
     db.all('select * from categories', [], (err, rows) => {
       if (err) {
         res.status(400).json({
-          error: err.message
+          error: err.message,
         });
         return;
       }
       res.json({
-        categories: rows
+        categories: rows,
       });
     });
   });

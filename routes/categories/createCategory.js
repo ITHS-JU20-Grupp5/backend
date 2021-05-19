@@ -6,25 +6,25 @@ module.exports = (app) => {
     db.get('select * from categories where Category = ?', category, (getErr, row) => {
       if (getErr) {
         res.status(400).json({
-          error: getErr.message
+          error: getErr.message,
         });
         return;
       }
       if (row) {
         res.status(409).json({
-          error: 'That category already exists'
+          message: 'That category already exists',
         });
         return;
       }
       db.run('insert into categories(Category) values (?)', category, function (runErr) {
         if (runErr) {
           res.status(400).json({
-            error: runErr.message
+            error: runErr.message,
           });
           return;
         }
         res.status(201).json({
-          id: this.lastID
+          id: this.lastID,
         });
       });
     });

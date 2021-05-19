@@ -8,17 +8,18 @@ module.exports = (app) => {
       function (err) {
         if (err) {
           res.status(400).json({
-            error: err.message
+            error: err.message,
           });
           return;
         }
         if (this.changes > 0) {
-            res.json({
-                id: req.params.id
-            });
-        } else res.status(400).json({
-            error: 'Invalid id'
-        });
+          res.json({
+            id: req.params.id,
+          });
+        } else
+          res.status(400).json({
+            error: 'Invalid id',
+          });
       }
     );
   });

@@ -9,18 +9,24 @@ module.exports = (app) => {
         name: req.body.name,
         email: req.body.email,
       })
-      .then((response) => {
+      .then(() => {
         res.json({
-          ok: response.data.ok,
+          user: {
+            username: req.body.username,
+            password: req.body.password,
+            name: req.body.name,
+            email: req.body.email,
+          },
         });
-        res.end();
       })
-      .catch((err) => {
-        if (err)
-          res.json({
-            ok: false,
-            error: err.message,
+      .catch((err) => err.response)
+      .then((error) => {
+        if (error) {
+          console.log(error);
+          res.status(400).json({
+            error: error.data.error,
           });
+        }
       });
   });
 };

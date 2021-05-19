@@ -2,7 +2,7 @@ const db = require.main.require('./utils/database');
 
 module.exports = (app) => {
   app.post('/questions/:id/answers', (req, res) => {
-    //!! converts const to a boolean value
+    // !! converts const to a boolean value
     const correct = !!req.body.correct;
     db.run(
       'insert into answers (Answer, Correct) values (?, ?)',
@@ -10,7 +10,7 @@ module.exports = (app) => {
       function (err) {
         if (err) {
           res.status(400).json({
-            error: err.message
+            error: err.message,
           });
           return;
         }
@@ -21,12 +21,12 @@ module.exports = (app) => {
           (juncErr) => {
             if (juncErr) {
               res.status(400).json({
-                error: juncErr.message
+                error: juncErr.message,
               });
               return;
             }
             res.status(201).json({
-              id: answerId
+              id: answerId,
             });
           }
         );

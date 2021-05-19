@@ -5,19 +5,19 @@ module.exports = (app) => {
     db.run('delete from answers where Id = ?', req.params.answerId, (err) => {
       if (err) {
         res.status(400).json({
-          error: err.message
+          error: err.message,
         });
         return;
       }
       db.run('delete from question_answers where AnswerId = ?', req.params.answerId, (juncErr) => {
         if (juncErr) {
           res.status(400).json({
-            error: juncErr.message
+            error: juncErr.message,
           });
           return;
         }
         res.json({
-          id: req.params.answerId
+          id: req.params.answerId,
         });
       });
     });
