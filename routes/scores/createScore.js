@@ -20,8 +20,7 @@ module.exports = (app) => {
           [req.userId, this.lastID],
           (err) => {
             if (err) {
-              res.json({
-                ok: false,
+              res.status(400).json({
                 error: err.message,
               });
               return;
@@ -31,14 +30,13 @@ module.exports = (app) => {
               [scoreId, category.toUpperCase()],
               (scoreCatErr) => {
                 if (scoreCatErr) {
-                  res.json({
-                    ok: false,
+                  res.status(400).json({
                     error: scoreCatErr.message,
                   });
                   return;
                 }
                 res.json({
-                  ok: true,
+                  id: scoreId
                 });
               }
             );

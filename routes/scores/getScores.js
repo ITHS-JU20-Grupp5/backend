@@ -10,17 +10,13 @@ module.exports = (app) => {
       [userId],
       (err, rows) => {
         if (err) {
-          res.json({
-            ok: false,
+          res.status(400).json({
             error: err.message,
           });
         }
         let index = 0;
         if (rows.length === 0) {
-          res.json({
-            ok: true,
-            scores: [],
-          });
+          res.status(204).json({});
           return;
         }
         rows.forEach((junctionRow) => {
@@ -29,8 +25,7 @@ module.exports = (app) => {
             [junctionRow.ScoreId, junctionRow.UserId],
             (getErr, row) => {
               if (getErr) {
-                res.json({
-                  ok: false,
+                res.status(400).json({
                   error: getErr.message,
                 });
                 return;
@@ -40,7 +35,6 @@ module.exports = (app) => {
               index++;
               if (index === rows.length) {
                 res.json({
-                  ok: true,
                   scores,
                 });
               }
