@@ -5,12 +5,11 @@ module.exports = (app) => {
     db.all('select * from questions', [], (err, rows) => {
       if (err) {
         res.status(400).json({
-          error: err.message,
+          error: err.message
         });
         return;
       }
       res.json({
-        ok: true,
         questions: rows,
       });
     });

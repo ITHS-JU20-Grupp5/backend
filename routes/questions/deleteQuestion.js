@@ -5,15 +5,14 @@ module.exports = (app) => {
     db.run('delete from questions where Id = ?', req.params.id, (err) => {
       if (err) {
         res.status(400).json({
-          error: err.message,
+          error: err.message
         });
         return;
       }
       db.run('delete from category_questions where QuestionId = ?', req.params.id, (catJuncErr) => {
         if (catJuncErr) {
-          res.json({
-            ok: false,
-            error: catJuncErr.message,
+          res.status(400).json({
+            error: catJuncErr.message
           });
           return;
         }
@@ -22,14 +21,13 @@ module.exports = (app) => {
           req.params.id,
           (quesJuncErr) => {
             if (quesJuncErr) {
-              res.json({
-                ok: false,
-                error: quesJuncErr.message,
+              res.status(400).json({
+                error: quesJuncErr.message
               });
               return;
             }
             res.json({
-              ok: true,
+              id:req.params.id
             });
           }
         );

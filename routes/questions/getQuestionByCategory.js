@@ -8,9 +8,8 @@ module.exports = (app) => {
       [req.params.id],
       (err, rows) => {
         if (err) {
-          res.json({
-            ok: false,
-            error: err.message,
+          res.status(400).json({
+            error: err.message
           });
         }
         let index = 0;
@@ -24,8 +23,7 @@ module.exports = (app) => {
               index++;
               if (index === amount) {
                 res.json({
-                  ok: true,
-                  questions,
+                  questions
                 });
               }
             }

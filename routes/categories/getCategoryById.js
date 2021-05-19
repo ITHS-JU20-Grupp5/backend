@@ -5,13 +5,12 @@ module.exports = (app) => {
     db.get('select * from categories where Id = ?', req.params.id, (err, row) => {
       if (err) {
         res.status(400).json({
-          error: err.message,
+          error: err.message
         });
         return;
       }
       res.json({
-        ok: true,
-        user: row,
+        category: row
       });
     });
   });
