@@ -44,86 +44,84 @@ module.exports = (app) => {
         options.category = cat;
         params.push(cat);
       }
-      db.get(query, params, async (getErr, row) => {
+      db.get(query, params, (getErr, row) => {
         if (getErr) {
-          res.json({
+          res.status(400).json({
             error: getErr.message,
           });
           return;
         }
         if (!row) {
           res.json({
-            ok: true,
             quiz: {},
           });
           return;
         }
-        let response = await axios.get(`http://localhost:3000/categories/${row.Id}/questions`);
-        response = response.data;
-        if (response.ok) {
-          let index = 0;
-          let tempArr = [];
-          response.questions.forEach(async (question) => {
-            axios
-              .get(`http://localhost:3000/questions/${question.Id}/answers`)
-              .then((httpRes) => {
-                const answersData = httpRes.data.answers;
-                // Create an empty array to use later
-                const answers = [];
+        axios.get(`http://localhost:3000/categories/${row.Id}/questions`).then((questionsRes) => {
+          if (questionsRes.status === 200) {
+            let index = 0;
+            let tempArr = [];
+            const questionsJson = questionsRes.data;
+            questionsJson.questions.forEach(async (question) => {
+              axios
+                .get(`http://localhost:3000/questions/${question.Id}/answers`)
+                .then((httpRes) => {
+                  const answersData = httpRes.data.answers;
+                  // Create an empty array to use later
+                  const answers = [];
 
-                // Add the correct answer to the empty array
-                answers.push(answersData.find((item) => item.Correct === 1));
+                  // Add the correct answer to the empty array
+                  answers.push(answersData.find((item) => item.Correct === 1));
 
-                // Filter out the correct answer and create a new array with the incorrect answers
-                const incorrect = answersData.filter((item) => item.Correct !== 1);
+                  // Filter out the correct answer and create a new array with the incorrect answers
+                  const incorrect = answersData.filter((item) => item.Correct !== 1);
 
-                // Loop through the incorrect answers and add the necessary amount to the array
-                let incorrectTemp = 0;
-                while (incorrectTemp < answersAmount - 1) {
-                  const incorrectIndex = Math.floor(Math.random() * incorrect.length);
-                  // Ensure that the same answer doesn't get added twice
-                  if (!answers.includes(incorrect[incorrectIndex])) {
-                    answers.push(incorrect[incorrectIndex]);
-                    incorrectTemp++;
+                  // Loop through the incorrect answers and add the necessary amount to the array
+                  let incorrectTemp = 0;
+                  while (incorrectTemp < answersAmount - 1) {
+                    const incorrectIndex = Math.floor(Math.random() * incorrect.length);
+                    // Ensure that the same answer doesn't get added twice
+                    if (!answers.includes(incorrect[incorrectIndex])) {
+                      answers.push(incorrect[incorrectIndex]);
+                      incorrectTemp++;
+                    }
                   }
-                }
 
-                const shuffledAnswers = answers
-                  .map((a) => ({
-                    sort: Math.random(),
-                    value: a,
-                  }))
-                  .sort((a, b) => a.sort - b.sort)
-                  .map((a) => a.value);
+                  const shuffledAnswers = answers
+                    .map((a) => ({
+                      sort: Math.random(),
+                      value: a,
+                    }))
+                    .sort((a, b) => a.sort - b.sort)
+                    .map((a) => a.value);
 
-                // Add the answers to the question object
-                question.Answers = shuffledAnswers;
+                  // Add the answers to the question object
+                  question.Answers = shuffledAnswers;
 
-                // Using a temporary array we add the question to it for short term storage
-                tempArr = [question, ...tempArr];
+                  // Using a temporary array we add the question to it for short term storage
+                  tempArr = [question, ...tempArr];
 
-                index++;
+                  index++;
 
-                // If the last question has been looped through return the quiz object containing the questions and answers
-                if (index === response.questions.length) {
-                  quiz.category = options.category;
-                  quiz.questions = tempArr;
-                  res.json({
-                    ok: true,
-                    quiz,
-                  });
-                }
-              })
-              .catch((error) => {
-                if (error) {
-                  res.json({
-                    ok: false,
-                    error: error.message,
-                  });
-                }
-              });
-          });
-        }
+                  // If the last question has been looped through return the quiz object containing the questions and answers
+                  if (index === questionsJson.questions.length) {
+                    quiz.category = options.category;
+                    quiz.questions = tempArr;
+                    res.json({
+                      quiz,
+                    });
+                  }
+                })
+                .catch((error) => {
+                  if (error) {
+                    res.status(400).json({
+                      error: error.message,
+                    });
+                  }
+                });
+            });
+          }
+        });
       });
     });
   });

@@ -11,14 +11,13 @@ module.exports = (app) => {
       }
       db.run('delete from category_questions where CategoryId = ?', req.params.id, (juncErr) => {
         if (juncErr) {
-          res.json({
-            ok: false,
+          res.status(400).json({
             error: juncErr.message,
           });
           return;
         }
         res.json({
-          ok: true,
+          id: req.params.id,
         });
       });
     });

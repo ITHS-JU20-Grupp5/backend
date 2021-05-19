@@ -5,8 +5,7 @@ module.exports = (app) => {
     let answers = [];
     db.all('select * from question_answers where QuestionId = ?', [req.params.id], (err, rows) => {
       if (err) {
-        res.json({
-          ok: false,
+        res.status(400).json({
           error: err.message,
         });
       }
@@ -15,12 +14,11 @@ module.exports = (app) => {
         db.get(
           'select answers.Id, Answer, Correct from answers inner join questions where answers.Id = ? and questions.Id = ?',
           [row.AnswerId, row.QuestionId],
-          (getErr, getRow) => {
+          (_getErr, getRow) => {
             answers = [getRow, ...answers];
             index++;
             if (index === rows.length) {
               res.json({
-                ok: true,
                 answers,
               });
             }

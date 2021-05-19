@@ -10,8 +10,7 @@ module.exports = (app) => {
       [userId],
       (err, rows) => {
         if (err) {
-          res.json({
-            ok: false,
+          res.status(400).json({
             error: err.message,
           });
         }
@@ -22,8 +21,7 @@ module.exports = (app) => {
             [junctionRow.ScoreId, junctionRow.UserId],
             (getErr, row) => {
               if (getErr) {
-                res.json({
-                  ok: false,
+                res.status(400).json({
                   error: getErr.message,
                 });
                 return;
@@ -38,7 +36,6 @@ module.exports = (app) => {
                   return 0;
                 });
                 res.json({
-                  ok: true,
                   score: scores[scores.length - 1],
                 });
               }

@@ -10,13 +10,11 @@ module.exports = (app) => {
         return;
       }
       if (!row) {
-        res.json({
-          ok: false,
+        res.status(400).json({
           message: 'Invalid question Id',
         });
       } else {
         res.json({
-          ok: true,
           question: row,
         });
       }

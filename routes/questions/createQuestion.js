@@ -4,8 +4,7 @@ module.exports = (app) => {
   app.post('/categories/:id/questions', (req, res) => {
     const { question } = req.body;
     if (!question) {
-      res.json({
-        ok: false,
+      res.status(400).json({
         error: 'Please enter a question',
       });
       return;
@@ -18,8 +17,7 @@ module.exports = (app) => {
         return;
       }
       if (row) {
-        res.json({
-          ok: false,
+        res.status(409).json({
           message: 'Question already in database',
         });
         return;
@@ -37,14 +35,12 @@ module.exports = (app) => {
           [req.params.id, questionId],
           (err) => {
             if (err) {
-              res.json({
-                ok: false,
+              res.status(400).json({
                 error: err.message,
               });
               return;
             }
-            res.json({
-              ok: true,
+            res.status(201).json({
               id: questionId,
             });
           }

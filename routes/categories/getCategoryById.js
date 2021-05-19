@@ -10,8 +10,7 @@ module.exports = (app) => {
         return;
       }
       res.json({
-        ok: true,
-        user: row,
+        category: row,
       });
     });
   });

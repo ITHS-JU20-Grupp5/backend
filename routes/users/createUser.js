@@ -12,23 +12,20 @@ module.exports = (app) => {
 
     // Validate
     if (!validate.password(userObj.password)) {
-      res.json({
-        ok: false,
-        message: 'Your password must be at least 6 characters long and contain no spaces.',
+      res.status(400).json({
+        error: 'Your password must be at least 6 characters long and contain no spaces.',
       });
       return;
     }
     if (!validate.email(userObj.email)) {
-      res.json({
-        ok: false,
-        message: 'Your email is invalid.',
+      res.status(400).json({
+        error: 'Your email is invalid.',
       });
       return;
     }
     if (!validate.username(userObj.username)) {
-      res.json({
-        ok: false,
-        message: 'Your username must be between 4 and 32 characters.',
+      res.status(400).json({
+        error: 'Your username must be between 4 and 32 characters.',
       });
       return;
     }
@@ -47,9 +44,8 @@ module.exports = (app) => {
           return;
         }
         if (row) {
-          res.json({
-            ok: false,
-            message: 'That username or email already exists',
+          res.status(400).json({
+            error: 'That username or email already exists',
           });
           return;
         }
@@ -63,8 +59,7 @@ module.exports = (app) => {
               });
               return;
             }
-            res.json({
-              ok: true,
+            res.status(201).json({
               id: this.lastID,
             });
           }

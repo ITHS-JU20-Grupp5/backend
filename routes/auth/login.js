@@ -32,7 +32,9 @@ module.exports = (app) => {
       })
       .catch((error) => {
         if (error) {
-          res.send('Invalid Username or Password');
+          res.status(400).json({
+            error: 'Invalid Username or Password',
+          });
         }
       });
   });

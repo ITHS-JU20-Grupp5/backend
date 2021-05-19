@@ -11,8 +11,7 @@ module.exports = (app) => {
         return;
       }
       if (row) {
-        res.json({
-          ok: false,
+        res.status(409).json({
           message: 'That category already exists',
         });
         return;
@@ -24,8 +23,7 @@ module.exports = (app) => {
           });
           return;
         }
-        res.json({
-          ok: true,
+        res.status(201).json({
           id: this.lastID,
         });
       });

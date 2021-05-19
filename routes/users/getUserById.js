@@ -10,7 +10,6 @@ module.exports = (app) => {
         return;
       }
       res.json({
-        ok: true,
         user: {
           id: row.Id,
           username: row.Username,

@@ -11,8 +11,7 @@ module.exports = (app) => {
       }
       db.run('delete from category_questions where QuestionId = ?', req.params.id, (catJuncErr) => {
         if (catJuncErr) {
-          res.json({
-            ok: false,
+          res.status(400).json({
             error: catJuncErr.message,
           });
           return;
@@ -22,14 +21,13 @@ module.exports = (app) => {
           req.params.id,
           (quesJuncErr) => {
             if (quesJuncErr) {
-              res.json({
-                ok: false,
+              res.status(400).json({
                 error: quesJuncErr.message,
               });
               return;
             }
             res.json({
-              ok: true,
+              id: req.params.id,
             });
           }
         );
