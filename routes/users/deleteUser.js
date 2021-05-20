@@ -11,11 +11,11 @@ module.exports = (app) => {
       }
       if (this.changes > 0) {
         res.json({
-          id: req.params.id
+          id: req.params.id,
         });
       } else {
         res.status(400).json({
-          error: 'Invalid User ID'
+          error: 'Invalid User ID',
         });
       }
     });

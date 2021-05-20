@@ -7,21 +7,21 @@ module.exports = (app) => {
       'update users set password = ? where Id = ?',
       [req.body.password, req.userId],
       function (err) {
-          if (err) {
-              res.status(400).json({
-                  error: err.message,
-              });
-              return;
-          }
-          if (this.changes > 0) {
-              res.json({
-                  id: req.userId
-              });
-          } else {
-              res.status(400).json({
-                  error: 'Password cannot be updated'
-              });
-          }
+        if (err) {
+          res.status(400).json({
+            error: err.message,
+          });
+          return;
+        }
+        if (this.changes > 0) {
+          res.json({
+            id: req.userId,
+          });
+        } else {
+          res.status(400).json({
+            error: 'Password cannot be updated',
+          });
+        }
       }
     );
   });

@@ -119,3 +119,6 @@ dist
 *.db
 
 data.json
+
+.idea/
+.vscode/

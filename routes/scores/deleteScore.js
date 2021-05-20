@@ -17,7 +17,7 @@ module.exports = (app) => {
           return;
         }
         res.json({
-          id: req.params.id
+          id: req.params.id,
         });
       });
     });
