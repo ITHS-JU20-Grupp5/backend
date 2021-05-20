@@ -59,9 +59,16 @@ module.exports = (app) => {
               });
               return;
             }
-            res.status(201).json({
-              id: this.lastID,
-            });
+            db.run(
+                "insert into user_roles (UserId, RoleId) values (?, (select Id from roles where Role = 'USER'))",
+                this.lastID,
+                (juncErr) => {
+                  if (juncErr) {
+                    res.status(400).json({
+                      error: runErr.message,
+                    });
+                  }
+                });
           }
         );
       }

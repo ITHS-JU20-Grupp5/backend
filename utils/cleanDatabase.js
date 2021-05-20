@@ -9,3 +9,5 @@ db.run('delete from questions');
 db.run('delete from answers');
 db.run('delete from users');
 db.run('delete from scores');
+db.run('delete from roles');
+db.run('delete from user_roles');
