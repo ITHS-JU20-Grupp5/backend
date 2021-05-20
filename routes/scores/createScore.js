@@ -36,7 +36,7 @@ module.exports = (app) => {
                   return;
                 }
                 res.json({
-                  id: scoreId
+                  id: scoreId,
                 });
               }
             );
