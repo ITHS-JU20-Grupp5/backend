@@ -11,3 +11,4 @@ db.run('delete from users');
 db.run('delete from scores');
 db.run('delete from roles');
 db.run('delete from user_roles');
+db.run('delete from sqlite_sequence');

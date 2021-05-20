@@ -7,7 +7,11 @@ const jsonFilePath = process.argv.splice(2)[0];
 const data = require(`../${jsonFilePath}`);
 
 data.users.forEach((user) => {
-  http.post('/users', user);
+  http.post('/users', user).catch((userErr) => {
+    if (userErr) {
+      console.error(userErr.message);
+    }
+  });
 });
 
 data.quiz.forEach((quizObj) => {

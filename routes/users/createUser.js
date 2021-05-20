@@ -59,16 +59,22 @@ module.exports = (app) => {
               });
               return;
             }
+            const id = this.lastID;
             db.run(
-                "insert into user_roles (UserId, RoleId) values (?, (select Id from roles where Role = 'USER'))",
-                this.lastID,
-                (juncErr) => {
-                  if (juncErr) {
-                    res.status(400).json({
-                      error: runErr.message,
-                    });
-                  }
+              "insert into user_roles (UserId, RoleId) values (?, (select Id from roles where Role = 'USER'))",
+              this.lastID,
+              (juncErr) => {
+                if (juncErr) {
+                  res.status(400).json({
+                    error: juncErr.message,
+                  });
+                  return;
+                }
+                res.json({
+                  id,
                 });
+              }
+            );
           }
         );
       }

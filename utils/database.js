@@ -45,26 +45,16 @@ const db = new sqlite.Database(DBFILE, (err) => {
     'CREATE TABLE score_categories(ScoreId integer not null, CategoryId integer not null, primary key(ScoreId, CategoryId), foreign key(ScoreId) references scores(Id), foreign key(CategoryId) references categories(Id))',
     cb
   );
+  db.run('CREATE TABLE roles(Id integer primary key autoincrement, Role text not null)', cb);
   db.run(
-      'CREATE TABLE roles(Id integer primary key autoincrement, Role text not null)',
-      cb
+    'CREATE TABLE user_roles(UserId integer not null, RoleId integer not null, primary key(UserId, RoleId), foreign key(UserId) references users(Id), foreign key(RoleId) references roles(Id))',
+    cb
   );
-  db.run(
-      'CREATE TABLE user_roles(UserId integer not null, RoleId integer not null, primary key(UserId, RoleId), foreign key(UserId) references users(Id), foreign key(RoleId) references roles(Id))',
-      cb
-  );
-  db.get(
-      'SELECT * from Roles',
-      (err, row) => {
-        if (!row) {
-          db.run(
-              "INSERT into roles(Role) values ('USER'), ('ADMIN')",
-              cb
-          );
-        }
-      }
-  );
-
+  db.all('SELECT * from Roles', (_err, rows) => {
+    if (rows.length === 0) {
+      db.run("INSERT into roles(Role) values ('USER'), ('ADMIN')", cb);
+    }
+  });
 });
 
 module.exports = db;

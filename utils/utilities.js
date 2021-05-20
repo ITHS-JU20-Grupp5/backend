@@ -15,13 +15,13 @@ module.exports.password = {
   verify: async (password, hashedPassword) => bcrypt.compare(password, hashedPassword),
 };
 
-module.exports.verifyToken = (req, res, next) => {
+function verifyAuthHeader(req, res) {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     res.status(403).json({
       message: 'Missing authorization header',
     });
-    return;
+    return null;
   }
 
   const token = authHeader.split(' ')[1];
@@ -30,17 +30,39 @@ module.exports.verifyToken = (req, res, next) => {
     res.status(403).json({
       message: 'No token provided',
     });
-    return;
+    return null;
   }
 
-  jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
+  return jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
     if (err) {
       res.status(401).json({
         message: 'Unauthorized',
       });
-      return;
+      return null;
     }
-    req.userId = decoded.Id;
-    next();
+    req.user = decoded;
+    return req.user.role;
   });
+}
+
+module.exports.verifyToken = (req, res, next) => {
+  const role = verifyAuthHeader(req, res);
+  if (role !== 'USER') {
+    res.status(401).json({
+      message: 'Unauthorized',
+    });
+    return;
+  }
+  next();
+};
+
+module.exports.verifyAdmin = (req, res, next) => {
+  const role = verifyAuthHeader(req, res);
+  if (role !== 'ADMIN') {
+    res.status(401).json({
+      message: 'Unauthorized',
+    });
+    return;
+  }
+  next();
 };
