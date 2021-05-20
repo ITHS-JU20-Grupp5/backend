@@ -1,7 +1,8 @@
 const db = require.main.require('./utils/database');
+const { verifyAdmin } = require.main.require('./utils/utilities');
 
 module.exports = (app) => {
-  app.post('/categories/:id/questions', (req, res) => {
+  app.post('/categories/:id/questions', verifyAdmin, (req, res) => {
     const { question } = req.body;
     if (!question) {
       res.status(400).json({

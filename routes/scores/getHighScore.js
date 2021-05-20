@@ -1,8 +1,8 @@
 const db = require.main.require('./utils/database');
-const { verifyToken } = require.main.require('./utils/utilities');
+const { verifyUser } = require.main.require('./utils/utilities');
 
 module.exports = (app) => {
-  app.get('/highscore', verifyToken, (req, res) => {
+  app.get('/highscore', verifyUser, (req, res) => {
     const { userId } = req;
     let scores = [];
     db.all(

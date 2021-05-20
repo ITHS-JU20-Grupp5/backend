@@ -13,8 +13,26 @@ module.exports = (app) => {
         if (row) {
           const verified = await password.verify(req.body.password, row.Password);
           if (verified) {
-            resolve(row);
+            db.all(
+              'select Role from user_roles join roles on RoleId = Id where UserId = ?',
+              row.Id,
+              (allErr, rows) => {
+                if (allErr) {
+                  res.status(400).json({
+                    error: allErr.message,
+                  });
+                  return;
+                }
+                const roles = [];
+                rows.forEach((role) => {
+                  roles.push(role.Role);
+                });
+                row.Roles = roles;
+                resolve(row);
+              }
+            );
           }
+        } else {
           reject(new Error('Invalid password'));
         }
       });
@@ -24,16 +42,13 @@ module.exports = (app) => {
         const accessToken = jwt.sign(response, process.env.TOKENSECRET, {
           expiresIn: 86400 * 30,
         });
-        req.user = response;
         response.accessToken = accessToken;
-        res.json({
-          user: response,
-        });
+        res.json(response);
       })
       .catch((error) => {
         if (error) {
           res.status(400).json({
-            error: 'Invalid Username or Password',
+            error: error.message,
           });
         }
       });

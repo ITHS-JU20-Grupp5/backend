@@ -2,9 +2,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports.validate = {
-  password: (password) => password.match(/[\w\d\S]{6,}/),
+  password: (password) => password.match(/^[\w\d\S]{6,}$/),
   email: (email) => email.match(/^[^\s@]+@[^\s@]+\.([^\s@]{2,})$/),
-  username: (username) => username.match(/\w{4,32}/),
+  username: (username) => username.match(/^\w{4,32}$/),
 };
 
 module.exports.password = {
@@ -15,13 +15,13 @@ module.exports.password = {
   verify: async (password, hashedPassword) => bcrypt.compare(password, hashedPassword),
 };
 
-module.exports.verifyToken = (req, res, next) => {
+function verifyAuthHeader(req, res) {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     res.status(403).json({
       message: 'Missing authorization header',
     });
-    return;
+    return null;
   }
 
   const token = authHeader.split(' ')[1];
@@ -30,17 +30,39 @@ module.exports.verifyToken = (req, res, next) => {
     res.status(403).json({
       message: 'No token provided',
     });
-    return;
+    return null;
   }
 
-  jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
+  return jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
     if (err) {
       res.status(401).json({
         message: 'Unauthorized',
       });
-      return;
+      return null;
     }
-    req.userId = decoded.Id;
-    next();
+    req.user = decoded;
+    return req.user.Roles;
   });
+}
+
+module.exports.verifyUser = (req, res, next) => {
+  const roles = verifyAuthHeader(req, res);
+  if (!roles.includes('USER')) {
+    res.status(401).json({
+      message: 'Unauthorized',
+    });
+    return;
+  }
+  next();
+};
+
+module.exports.verifyAdmin = (req, res, next) => {
+  const roles = verifyAuthHeader(req, res);
+  if (!roles.includes('ADMIN')) {
+    res.status(401).json({
+      message: 'Unauthorized',
+    });
+    return;
+  }
+  next();
 };
