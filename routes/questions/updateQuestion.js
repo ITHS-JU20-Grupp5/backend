@@ -1,7 +1,8 @@
 const db = require.main.require('./utils/database');
+const { verifyAdmin } = require.main.require('./utils/utilities');
 
 module.exports = (app) => {
-  app.patch('/questions/:id', (req, res) => {
+  app.patch('/questions/:id', verifyAdmin, (req, res) => {
     db.run(
       'update questions set question = ? where Id = ?',
       [req.body.question, req.params.id],

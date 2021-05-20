@@ -1,7 +1,8 @@
 const db = require.main.require('./utils/database');
+const { verifyAdmin } = require.main.require('./utils/utilities');
 
 module.exports = (app) => {
-  app.post('/categories', (req, res) => {
+  app.post('/categories', verifyAdmin, (req, res) => {
     const category = req.body.category.toUpperCase();
     db.get('select * from categories where Category = ?', category, (getErr, row) => {
       if (getErr) {

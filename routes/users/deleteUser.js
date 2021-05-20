@@ -10,8 +10,16 @@ module.exports = (app) => {
         return;
       }
       if (this.changes > 0) {
-        res.json({
-          id: req.params.id,
+        db.run('delete from user_roles where UserId = ?', req.params.id, (juncErr) => {
+          if (juncErr) {
+            res.status(400).json({
+              error: juncErr.message,
+            });
+            return;
+          }
+          res.json({
+            id: req.params.id,
+          });
         });
       } else {
         res.status(400).json({

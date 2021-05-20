@@ -25,7 +25,7 @@ module.exports = (app) => {
     }
     if (!validate.username(userObj.username)) {
       res.status(400).json({
-        error: 'Your username must be between 4 and 32 characters.',
+        error: 'Your username must not contain spaces and be between 4 and 32 characters.',
       });
       return;
     }
@@ -59,9 +59,22 @@ module.exports = (app) => {
               });
               return;
             }
-            res.status(201).json({
-              id: this.lastID,
-            });
+            const id = this.lastID;
+            db.run(
+              "insert into user_roles (UserId, RoleId) values (?, (select Id from roles where Role = 'USER'))",
+              this.lastID,
+              (juncErr) => {
+                if (juncErr) {
+                  res.status(400).json({
+                    error: juncErr.message,
+                  });
+                  return;
+                }
+                res.json({
+                  id,
+                });
+              }
+            );
           }
         );
       }

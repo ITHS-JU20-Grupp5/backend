@@ -1,7 +1,8 @@
 const db = require.main.require('./utils/database');
+const { verifyAdmin } = require.main.require('./utils/utilities');
 
 module.exports = (app) => {
-  app.delete('/questions/:questionId/answers/:answerId', (req, res) => {
+  app.delete('/questions/:questionId/answers/:answerId', verifyAdmin, (req, res) => {
     db.run('delete from answers where Id = ?', req.params.answerId, (err) => {
       if (err) {
         res.status(400).json({

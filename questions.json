@@ -1,5 +1,12 @@
 {
-  "users": [],
+  "users": [
+    {
+      "username": "user",
+      "name": "Test User",
+      "email": "mail@example.com",
+      "password": "Password123"
+    }
+  ],
   "quiz": [
     {
       "category": "Allmän Fakta",

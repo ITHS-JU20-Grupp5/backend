@@ -1,7 +1,8 @@
 const db = require.main.require('./utils/database');
+const { verifyAdmin } = require.main.require('./utils/utilities');
 
 module.exports = (app) => {
-  app.post('/questions/:id/answers', (req, res) => {
+  app.post('/questions/:id/answers', verifyAdmin, (req, res) => {
     // !! converts const to a boolean value
     const correct = !!req.body.correct;
     db.run(
