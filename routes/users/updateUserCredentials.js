@@ -1,5 +1,6 @@
 const db = require.main.require('./utils/database');
 const { verifyUser, password } = require.main.require('./utils/utilities');
+const jwt = require('jsonwebtoken');
 
 module.exports = (app) => {
   app.patch('/users', verifyUser, async (req, res) => {
@@ -22,7 +23,27 @@ module.exports = (app) => {
           return;
         }
         if (this.changes > 0) {
-          res.json(req.user);
+          req.user.Password = newPassword;
+          req.user.Name = user.name;
+          db.run(
+            'insert into banned_tokens (Token) values (?)',
+            req.headers.authorization.split(' ')[1],
+            () => {
+              const tempUser = {
+                Id: req.user.Id,
+                Username: req.user.Username,
+                Name: req.user.Name,
+                Email: req.user.Email,
+                Password: req.user.Password,
+                Roles: req.user.Roles,
+              };
+              const accessToken = jwt.sign(tempUser, process.env.TOKENSECRET, {
+                expiresIn: 86400 * 30,
+              });
+              tempUser.accessToken = accessToken;
+              res.json(tempUser);
+            }
+          );
         } else {
           res.status(400).json({
             error: 'Password cannot be updated',
