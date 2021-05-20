@@ -50,6 +50,10 @@ const db = new sqlite.Database(DBFILE, (err) => {
     'CREATE TABLE user_roles(UserId integer not null, RoleId integer not null, primary key(UserId, RoleId), foreign key(UserId) references users(Id), foreign key(RoleId) references roles(Id))',
     cb
   );
+  db.run(
+    'CREATE TABLE banned_tokens(Id integer primary key autoincrement, Token text not null)',
+    cb
+  );
   db.all('SELECT * from Roles', (_err, rows) => {
     if (rows.length === 0) {
       db.run("INSERT into roles(Role) values ('USER'), ('ADMIN')", cb);
