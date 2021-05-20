@@ -25,7 +25,7 @@ module.exports = (app) => {
     }
     if (!validate.username(userObj.username)) {
       res.status(400).json({
-        error: 'Your username must be between 4 and 32 characters.',
+        error: 'Your username must not contain spaces and be between 4 and 32 characters.',
       });
       return;
     }

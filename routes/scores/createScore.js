@@ -1,8 +1,8 @@
 const db = require.main.require('./utils/database');
-const { verifyToken } = require.main.require('./utils/utilities');
+const { verifyUser } = require.main.require('./utils/utilities');
 
 module.exports = (app) => {
-  app.post('/scores', verifyToken, (req, res) => {
+  app.post('/scores', verifyUser, (req, res) => {
     const { score, category } = req.body;
     db.run(
       "insert into scores (Score,Date_Time) values (?,datetime('now','localtime'))",
@@ -17,7 +17,7 @@ module.exports = (app) => {
         const scoreId = this.lastID;
         db.run(
           'insert into user_scores (UserId, ScoreId) values (?, ?)',
-          [req.userId, this.lastID],
+          [req.user.Id, this.lastID],
           (err) => {
             if (err) {
               res.status(400).json({

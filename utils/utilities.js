@@ -2,9 +2,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports.validate = {
-  password: (password) => password.match(/[\w\d\S]{6,}/),
+  password: (password) => password.match(/^[\w\d\S]{6,}$/),
   email: (email) => email.match(/^[^\s@]+@[^\s@]+\.([^\s@]{2,})$/),
-  username: (username) => username.match(/\w{4,32}/),
+  username: (username) => username.match(/^\w{4,32}$/),
 };
 
 module.exports.password = {
@@ -41,13 +41,13 @@ function verifyAuthHeader(req, res) {
       return null;
     }
     req.user = decoded;
-    return req.user.role;
+    return req.user.Roles;
   });
 }
 
-module.exports.verifyToken = (req, res, next) => {
-  const role = verifyAuthHeader(req, res);
-  if (role !== 'USER') {
+module.exports.verifyUser = (req, res, next) => {
+  const roles = verifyAuthHeader(req, res);
+  if (!roles.includes('USER')) {
     res.status(401).json({
       message: 'Unauthorized',
     });
@@ -57,8 +57,8 @@ module.exports.verifyToken = (req, res, next) => {
 };
 
 module.exports.verifyAdmin = (req, res, next) => {
-  const role = verifyAuthHeader(req, res);
-  if (role !== 'ADMIN') {
+  const roles = verifyAuthHeader(req, res);
+  if (!roles.includes('ADMIN')) {
     res.status(401).json({
       message: 'Unauthorized',
     });

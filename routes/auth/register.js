@@ -11,7 +11,6 @@ module.exports = (app) => {
       })
       // eslint-disable-next-line no-unused-vars
       .then((_response) => {
-        console.log('hello');
         res.json({
           user: {
             username: req.body.username,
