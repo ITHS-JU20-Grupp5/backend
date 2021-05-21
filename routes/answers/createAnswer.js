@@ -1,6 +1,6 @@
 const { verifyAdmin } = require.main.require('./utils/utilities');
 const AnswerController = require.main.require('./controllers/answer.controller');
-const QuestionController = require.main.require('./controller/question.controller');
+const QuestionController = require.main.require('./controllers/question.controller');
 
 module.exports = (app) => {
   app.post('/questions/:id/answers', verifyAdmin, (req, res) => {

@@ -20,12 +20,12 @@ db.sequelize.sync(options).then(async () => {
   // console.log('Added user role');
   // const adminRole = await RoleController.create({ role: 'Admin' });
   // console.log('Added admin role');
-  /* const user = await UserController.create({
-   username: 'tobias',
-    name: 'Tobias Wadseth',
-    email: 'twadseth@icloud.com',
-    password: await password.encrypt('password123'),
-  });*/
+  // const user = await UserController.create({
+  //   username: 'tobias',
+  //   name: 'Tobias Wadseth',
+  //   email: 'twadseth@icloud.com',
+  //   password: await password.encrypt('password123'),
+  // });
   // console.log('Created user: tobias');
   // const adminUser = await UserController.create({
   //   username: 'admin',
@@ -50,7 +50,7 @@ db.sequelize.sync(options).then(async () => {
   //! Log
   // console.log(user.username, userRole.role);
   // console.log(admin.username, adminRole.role);
-  //console.log(JSON.stringify(user, null, 2));
+  // console.log(JSON.stringify(user, null, 2));
 
   const role = await RoleController.create({ role: 'user' });
   const user = await UserController.create({
@@ -72,7 +72,26 @@ db.sequelize.sync(options).then(async () => {
   await UserController.addRole(user.id, role.id);
   await UserController.addScore(user.id, score.id);
   await CategoryController.addScore(category.id, score.id);
-  await CategoryController.addQuestion(category.id, question.id);
   await QuestionController.addAnswer(question.id, answer.id);
+  await CategoryController.addQuestion(category.id, question.id);
+
   console.log('ITS WORKING ANAKIN');
+  await QuestionController.delete({ where: { id: question.id } });
+  const newAnswer = await QuestionController.findById(answer.id);
+  // const newnewQuestion = await QuestionController.findById(question.id, false);
+
+  console.log(JSON.stringify(newAnswer, null, 2));
+
+  // console.log(question.question);
+  // await AnswerController.findAll().then((answers) => {
+  //   answers.forEach((forAnswer) => {
+  //     if (forAnswer.questionId === question.id) {
+  //       console.log(forAnswer.answer);
+  //     }
+  //   });
+  // });
+  // const newUser = await UserController.findById(user.id);
+  // console.log(newUser.roles[0].role);
+  // console.log(await UserController.findById(user.id));
+  // console.log(await QuestionController.findById(question.id));
 });

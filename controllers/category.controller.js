@@ -18,11 +18,6 @@ module.exports.findAll = () =>
     include: [
       {
         model: Question,
-        as: 'questions',
-        attributes: ['id', 'question'],
-        through: {
-          attributes: [],
-        },
       },
     ],
   })
@@ -38,15 +33,22 @@ module.exports.findById = (id) =>
     include: [
       {
         model: Question,
-        as: 'questions',
-        attributes: ['id', 'question'],
-        through: {
-          attributes: [],
-        },
       },
     ],
   })
     .then((categories) => categories)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.findOrCreate = (values) =>
+  Category.findOrCreate({
+    where: { category: values.category },
+    defaults: { category: values.category },
+  })
+    .then((category) => category)
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);
@@ -93,6 +95,15 @@ module.exports.addQuestion = (categoryId, questionId) =>
         return category;
       });
     })
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.delete = (options) =>
+  Category.destroy(options)
+    .then((res) => res)
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);

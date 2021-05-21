@@ -13,16 +13,12 @@ module.exports.create = (user) =>
       }
     });
 
-module.exports.findAll = () =>
+module.exports.findAll = (where = {}) =>
   User.findAll({
+    where,
     include: [
       {
         model: Role,
-        as: 'roles',
-        attributes: ['id', 'role'],
-        through: {
-          attributes: [],
-        },
       },
     ],
   })
@@ -38,11 +34,6 @@ module.exports.findById = (id) =>
     include: [
       {
         model: Role,
-        as: 'roles',
-        attributes: ['id', 'role'],
-        through: {
-          attributes: [],
-        },
       },
     ],
   })
@@ -93,6 +84,15 @@ module.exports.addScore = (userId, scoreId) =>
         return user;
       });
     })
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.delete = (options) =>
+  User.destroy(options)
+    .then((res) => res)
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);

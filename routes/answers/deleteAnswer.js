@@ -1,26 +1,22 @@
-const db = require.main.require('./utils/database');
 const { verifyAdmin } = require.main.require('./utils/utilities');
+const AnswerController = require.main.require('./controllers/answer.controller');
 
 module.exports = (app) => {
   app.delete('/questions/:questionId/answers/:answerId', verifyAdmin, (req, res) => {
-    db.run('delete from answers where Id = ?', req.params.answerId, (err) => {
-      if (err) {
-        res.status(400).json({
-          error: err.message,
-        });
-        return;
-      }
-      db.run('delete from question_answers where AnswerId = ?', req.params.answerId, (juncErr) => {
-        if (juncErr) {
+    AnswerController.delete({
+      where: {
+        id: req.params.answerId,
+      },
+    })
+      .then((id) => {
+        res.json({ id });
+      })
+      .catch((err) => {
+        if (err) {
           res.status(400).json({
-            error: juncErr.message,
+            error: err.message,
           });
-          return;
         }
-        res.json({
-          id: req.params.answerId,
-        });
       });
-    });
   });
 };

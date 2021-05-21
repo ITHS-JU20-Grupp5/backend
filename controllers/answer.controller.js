@@ -28,3 +28,12 @@ module.exports.findById = (id) =>
         console.error('Error: ', err.message);
       }
     });
+
+module.exports.delete = (options) =>
+  Answer.destroy(options)
+    .then((res) => res)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });

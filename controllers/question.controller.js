@@ -17,11 +17,6 @@ module.exports.findAll = () =>
     include: [
       {
         model: Answer,
-        as: 'answers',
-        attributes: ['id', 'answer'],
-        through: {
-          attributes: [],
-        },
       },
     ],
   })
@@ -37,11 +32,6 @@ module.exports.findById = (id) =>
     include: [
       {
         model: Answer,
-        as: 'answers',
-        attributes: ['id', 'answer'],
-        through: {
-          attributes: [],
-        },
       },
     ],
   })
@@ -69,6 +59,15 @@ module.exports.addAnswer = (questionId, answerId) =>
         return question;
       });
     })
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.delete = (options) =>
+  Question.destroy(options)
+    .then((res) => res)
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);

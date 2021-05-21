@@ -17,11 +17,6 @@ module.exports.findAll = () =>
     include: [
       {
         model: User,
-        as: 'users',
-        attributes: ['id', 'username'],
-        through: {
-          attributes: [],
-        },
       },
     ],
   })
@@ -37,15 +32,19 @@ module.exports.findById = (id) =>
     include: [
       {
         model: User,
-        as: 'users',
-        attributes: ['id', 'username'],
-        through: {
-          attributes: [],
-        },
       },
     ],
   })
     .then((score) => score)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.delete = (options) =>
+  Score.destroy(options)
+    .then((res) => res)
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);
