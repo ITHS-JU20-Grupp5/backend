@@ -24,6 +24,9 @@
     "fs": "*",
     "jsonwebtoken": "^8.5.1",
     "path": "^0.12.7",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
