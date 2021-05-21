@@ -2,6 +2,7 @@ const db = require('../utils/sequelize');
 
 const User = db.user;
 const Role = db.role;
+const Score = db.score;
 
 module.exports.create = (user) =>
   User.create(user)
@@ -66,6 +67,29 @@ module.exports.addRole = (userId, roleId) =>
         }
         user.addRole(role);
         console.log(`Added role: ${role.role} to user: ${user.username}`);
+        return user;
+      });
+    })
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.addScore = (userId, scoreId) =>
+  User.findByPk(userId)
+    .then((user) => {
+      if (!user) {
+        console.log('No user was found');
+        return null;
+      }
+      return Score.findByPk(scoreId).then((score) => {
+        if (!score) {
+          console.log('No score was found');
+          return null;
+        }
+        user.addScore(score);
+        console.log(`Added score: ${score.score} to user: ${user.username}`);
         return user;
       });
     })
