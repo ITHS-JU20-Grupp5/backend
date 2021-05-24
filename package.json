@@ -6,10 +6,7 @@
   "scripts": {
     "start": "node index",
     "dev": "nodemon index",
-    "db:clean": "node utils/cleanDatabase",
     "db:load": "node utils/loadDataFromJson",
-    "db:load:test": "node utils/dummyData",
-    "db:admin": "node utils/createAdmin",
     "lint": "eslint ."
   },
   "author": "",

@@ -1,48 +1,35 @@
-const db = require.main.require('./utils/database');
+const ScoreController = require.main.require('./controllers/score.controller');
+const UserController = require.main.require('./controllers/user.controller');
+const CategoryController = require.main.require('./controllers/category.controller');
 const { verifyUser } = require.main.require('./utils/utilities');
 
 module.exports = (app) => {
   app.post('/scores', verifyUser, (req, res) => {
     const { score, category } = req.body;
-    db.run(
-      "insert into scores (Score,Date_Time) values (?,datetime('now','localtime'))",
-      score,
-      function (runErr) {
-        if (runErr) {
-          res.status(400).json({
-            error: runErr.message,
-          });
-          return;
-        }
-        const scoreId = this.lastID;
-        db.run(
-          'insert into user_scores (UserId, ScoreId) values (?, ?)',
-          [req.user.Id, this.lastID],
-          (err) => {
-            if (err) {
+    ScoreController.create({ score }).then((newScore) => {
+      CategoryController.findOne({
+        category,
+      }).then((foundCategory) => {
+        CategoryController.addScore(foundCategory.id, newScore.id).then((categoryScore) => {
+          if (!categoryScore) {
+            res.status(400).json({
+              error: 'Could not add score',
+            });
+            return;
+          }
+          UserController.addScore(req.user.id, newScore.id).then((userScore) => {
+            if (!userScore) {
               res.status(400).json({
-                error: err.message,
+                error: 'Could not add score',
               });
               return;
             }
-            db.run(
-              'insert into score_categories (ScoreId, CategoryId) values (?, (select Id from categories where Category = ?))',
-              [scoreId, category.toUpperCase()],
-              (scoreCatErr) => {
-                if (scoreCatErr) {
-                  res.status(400).json({
-                    error: scoreCatErr.message,
-                  });
-                  return;
-                }
-                res.json({
-                  id: scoreId,
-                });
-              }
-            );
-          }
-        );
-      }
-    );
+            res.status(201).json({
+              newScore,
+            });
+          });
+        });
+      });
+    });
   });
 };

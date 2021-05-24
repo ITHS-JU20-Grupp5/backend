@@ -13,8 +13,9 @@ module.exports.create = (category) =>
       }
     });
 
-module.exports.findAll = () =>
+module.exports.findAll = (where = {}) =>
   Category.findAll({
+    where,
     include: [
       {
         model: Question,
@@ -40,6 +41,21 @@ module.exports.findById = (id) =>
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.findOne = (where = {}) =>
+  Category.findAll({ where, include: [{ model: Question }] })
+    .then((categories) => {
+      if (!categories) {
+        console.log('No category was found');
+        return null;
+      }
+      return categories[0];
+    })
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.nessage);
       }
     });
 
@@ -87,7 +103,7 @@ module.exports.addQuestion = (categoryId, questionId) =>
       }
       return Question.findByPk(questionId).then((question) => {
         if (!question) {
-          console.log('No score was found');
+          console.log('No question was found');
           return null;
         }
         category.addQuestion(question);

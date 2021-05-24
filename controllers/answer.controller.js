@@ -11,8 +11,8 @@ module.exports.create = (answer) =>
       }
     });
 
-module.exports.findAll = () =>
-  Answer.findAll()
+module.exports.findAll = (where = {}) =>
+  Answer.findAll({ where })
     .then((answers) => answers)
     .catch((err) => {
       if (err) {

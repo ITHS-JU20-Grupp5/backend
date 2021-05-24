@@ -11,8 +11,22 @@ module.exports.create = (role) =>
       }
     });
 
-module.exports.findAll = () =>
-  Role.findAll()
+module.exports.findOrCreate = async (values) =>
+  Role.findOrCreate({
+    where: { role: values.role },
+    defaults: {
+      role: values.role,
+    },
+  })
+    .then((role) => role)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.findAll = (where = {}) =>
+  Role.findAll({ where })
     .then((roles) => roles)
     .catch((err) => {
       if (err) {

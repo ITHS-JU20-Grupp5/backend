@@ -9,7 +9,13 @@ module.exports = (app) => {
     AnswerController.create({ answer: req.body.answer, correct })
       .then((newAnswer) => {
         QuestionController.addAnswer(req.params.id, newAnswer.id)
-          .then(() => {
+          .then((newQuestion) => {
+            if (!newQuestion) {
+              res.status(404).json({
+                error: 'Question or Answer not found',
+              });
+              return;
+            }
             res.status(201).json(newAnswer);
           })
           .catch((err) => {

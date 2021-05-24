@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 const db = require('./utils/sequelize');
+const RoleController = require('./controllers/role.controller');
 
 const app = express();
 app.use(cors());
@@ -31,7 +32,10 @@ function recursiveRoutes(folder) {
   });
 }
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync().then(async () => {
+  await RoleController.findOrCreate({ role: 'User' });
+  await RoleController.findOrCreate({ role: 'Admin' });
+
   recursiveRoutes('routes');
 
   const port = process.env.PORT || 3000;

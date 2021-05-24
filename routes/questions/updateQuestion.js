@@ -1,27 +1,18 @@
-const db = require.main.require('./utils/database');
 const { verifyAdmin } = require.main.require('./utils/utilities');
+const QuestionController = require.main.require('./controllers/question.controller');
 
 module.exports = (app) => {
   app.patch('/questions/:id', verifyAdmin, (req, res) => {
-    db.run(
-      'update questions set question = ? where Id = ?',
-      [req.body.question, req.params.id],
-      function (err) {
+    QuestionController.update({ id: req.params.id, question: req.body.question })
+      .then((updatedQuestion) => {
+        res.json({ updatedQuestion });
+      })
+      .catch((err) => {
         if (err) {
           res.status(400).json({
             error: err.message,
           });
-          return;
         }
-        if (this.changes > 0) {
-          res.json({
-            id: req.params.id,
-          });
-        } else
-          res.status(400).json({
-            error: 'Invalid id',
-          });
-      }
-    );
+      });
   });
 };

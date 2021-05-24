@@ -1,6 +1,8 @@
-const db = require.main.require('./utils/database');
-const { validate, password } = require.main.require('./utils/utilities');
+const { validate } = require.main.require('./utils/utilities');
+const UserController = require.main.require('./controllers/user.controller');
+const RoleController = require.main.require('./controllers/role.controller');
 
+// TODO: Change external validation to internal db constraints
 module.exports = (app) => {
   app.post('/users', async (req, res) => {
     const userObj = {
@@ -9,7 +11,6 @@ module.exports = (app) => {
       email: req.body.email.trim(),
       password: req.body.password.trim(),
     };
-
     // Validate
     if (!validate.password(userObj.password)) {
       res.status(400).json({
@@ -29,55 +30,44 @@ module.exports = (app) => {
       });
       return;
     }
-
-    const hashedPassword = await password.encrypt(userObj.password);
-    const user = [userObj.username, userObj.name, userObj.email, hashedPassword];
-
-    db.get(
-      'select * from users where Username = ? or Email = ?',
-      [userObj.username, userObj.email],
-      (getErr, row) => {
-        if (getErr) {
+    UserController.findOrCreate(userObj)
+      .then(([user, created]) => {
+        if (!created) {
           res.status(400).json({
-            error: getErr.message,
+            error: 'That username or email is already used',
           });
           return;
         }
-        if (row) {
-          res.status(400).json({
-            error: 'That username or email already exists',
-          });
-          return;
-        }
-        db.run(
-          'insert into users (Username, Name, Email, Password) values (?, ?, ?, ?)',
-          user,
-          function (runErr) {
-            if (runErr) {
-              res.status(400).json({
-                error: runErr.message,
-              });
-              return;
-            }
-            const id = this.lastID;
-            db.run(
-              "insert into user_roles (UserId, RoleId) values (?, (select Id from roles where Role = 'USER'))",
-              this.lastID,
-              (juncErr) => {
-                if (juncErr) {
-                  res.status(400).json({
-                    error: juncErr.message,
-                  });
-                  return;
-                }
-                res.json({
-                  id,
+        RoleController.findOrCreate({ role: 'User' })
+          .then(([role]) => {
+            UserController.addRole(user.id, role.id)
+              .then((newUser) => {
+                res.status(201).json({
+                  newUser,
                 });
-              }
-            );
-          }
-        );
-      }
-    );
+              })
+              .catch((err) => {
+                if (err) {
+                  res.status(400).json({
+                    error: err.message,
+                  });
+                }
+              });
+          })
+          .catch((err) => {
+            if (err) {
+              res.status(400).json({
+                error: err.message,
+              });
+            }
+          });
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).json({
+            error: err.message,
+          });
+        }
+      });
   });
 };

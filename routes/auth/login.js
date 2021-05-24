@@ -5,14 +5,13 @@ const UserController = require.main.require('./controllers/user.controller');
 
 module.exports = (app) => {
   app.post('/auth/login', async (req, res) => {
-    UserController.findAll({ username: req.body.username }).then(async (users) => {
-      if (!users) {
+    UserController.findOne({ username: req.body.username }).then(async (user) => {
+      if (!user) {
         res.status(400).json({
           error: 'User does not exist',
         });
         return;
       }
-      const user = users[0];
       const verified = await password.verify(req.body.password, user.password);
       if (!verified) {
         res.status(400).json({
@@ -20,11 +19,21 @@ module.exports = (app) => {
         });
         return;
       }
+      user = JSON.parse(JSON.stringify(user, null, 4));
       const accessToken = jwt.sign(user, process.env.TOKENSECRET, {
-        expiresIn: 86400 * 30,
+        expiresIn: '30d',
       });
-      user.accessToken = accessToken;
-      res.json(user);
+      const newUser = {
+        username: user.username,
+        name: user.username,
+        email: user.email,
+        password: user.password,
+        roles: user.roles,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+        accessToken,
+      };
+      res.json(newUser);
     });
   });
 };

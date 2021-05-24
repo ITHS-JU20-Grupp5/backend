@@ -12,8 +12,9 @@ module.exports.create = (score) =>
       }
     });
 
-module.exports.findAll = () =>
+module.exports.findAll = (where = {}) =>
   Score.findAll({
+    where,
     include: [
       {
         model: User,

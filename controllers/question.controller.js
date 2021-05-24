@@ -12,8 +12,28 @@ module.exports.create = (question) =>
       }
     });
 
-module.exports.findAll = () =>
+module.exports.update = (values) => {
+  Question.update(
+    {
+      question: values.question,
+    },
+    {
+      where: {
+        id: values.id,
+      },
+    }
+  )
+    .then((updatedQuestion) => updatedQuestion)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+};
+
+module.exports.findAll = (where = {}) =>
   Question.findAll({
+    where,
     include: [
       {
         model: Answer,
@@ -36,6 +56,18 @@ module.exports.findById = (id) =>
     ],
   })
     .then((questions) => questions)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.findOrCreate = (values) =>
+  Question.findOrCreate({
+    where: { question: values.question },
+    defaults: { question: values.question },
+  })
+    .then((question) => question)
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);

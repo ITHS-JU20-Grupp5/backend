@@ -1,6 +1,10 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+/**
+ * deprecated
+ * Need to refactor this into database constraints
+ */
 module.exports.validate = {
   password: (password) => password.match(/^[\w\d\S]{6,}$/),
   email: (email) => email.match(/^[^\s@]+@[^\s@]+\.([^\s@]{2,})$/),
@@ -21,7 +25,7 @@ function verifyAuthHeader(req, res) {
     res.status(403).json({
       message: 'Missing authorization header',
     });
-    return null;
+    return [];
   }
 
   const token = authHeader.split(' ')[1];
@@ -30,7 +34,7 @@ function verifyAuthHeader(req, res) {
     res.status(403).json({
       message: 'No token provided',
     });
-    return null;
+    return [];
   }
 
   return jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
@@ -38,16 +42,25 @@ function verifyAuthHeader(req, res) {
       res.status(401).json({
         message: 'Unauthorized',
       });
-      return null;
+      return [];
     }
     req.user = decoded;
-    return req.user.Roles;
+    return req.user.roles;
   });
 }
 
 module.exports.verifyUser = (req, res, next) => {
   const roles = verifyAuthHeader(req, res);
-  if (!roles.includes('USER')) {
+  if (roles.length === 0) {
+    return;
+  }
+  let authorized = false;
+  roles.forEach((role) => {
+    if (role.role === 'User') {
+      authorized = true;
+    }
+  });
+  if (!authorized) {
     res.status(401).json({
       message: 'Unauthorized',
     });
@@ -58,7 +71,16 @@ module.exports.verifyUser = (req, res, next) => {
 
 module.exports.verifyAdmin = (req, res, next) => {
   const roles = verifyAuthHeader(req, res);
-  if (!roles.includes('ADMIN')) {
+  if (roles.length === 0) {
+    return;
+  }
+  let authorized = false;
+  roles.forEach((role) => {
+    if (role.role === 'Admin') {
+      authorized = true;
+    }
+  });
+  if (!authorized) {
     res.status(401).json({
       message: 'Unauthorized',
     });

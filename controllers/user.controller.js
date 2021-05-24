@@ -1,5 +1,7 @@
 const db = require('../utils/sequelize');
 
+const { password } = require.main.require('./utils/utilities');
+
 const User = db.user;
 const Role = db.role;
 const Score = db.score;
@@ -13,12 +15,30 @@ module.exports.create = (user) =>
       }
     });
 
+module.exports.findOrCreate = async (values) =>
+  User.findOrCreate({
+    where: { username: values.username, email: values.email },
+    defaults: {
+      username: values.username,
+      name: values.name,
+      email: values.email,
+      password: await password.encrypt(values.password),
+    },
+  })
+    .then((category) => category)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
 module.exports.findAll = (where = {}) =>
   User.findAll({
     where,
     include: [
       {
         model: Role,
+        as: 'roles',
       },
     ],
   })
@@ -34,10 +54,26 @@ module.exports.findById = (id) =>
     include: [
       {
         model: Role,
+        as: 'roles',
       },
     ],
   })
     .then((user) => user)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.findOne = (where = {}) =>
+  User.findAll({ where, include: [{ model: Role, as: 'roles' }] })
+    .then((users) => {
+      if (!users) {
+        console.log('No user was found');
+        return null;
+      }
+      return users[0];
+    })
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);
