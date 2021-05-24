@@ -1,31 +1,18 @@
-const db = require.main.require('./utils/database');
+const { verifyAdmin } = require.main.require('./utils/utilities');
+const UserController = require.main.require('./controllers/user.controller');
 
 module.exports = (app) => {
-  app.delete('/users/:id', (req, res) => {
-    db.run('delete from users where Id = ?', req.params.id, function (err) {
-      if (err) {
-        res.status(400).json({
-          error: err.message,
-        });
-        return;
-      }
-      if (this.changes > 0) {
-        db.run('delete from user_roles where UserId = ?', req.params.id, (juncErr) => {
-          if (juncErr) {
-            res.status(400).json({
-              error: juncErr.message,
-            });
-            return;
-          }
-          res.json({
-            id: req.params.id,
+  app.delete('/users/:id', verifyAdmin, (req, res) => {
+    UserController.delete({ where: { id: req.params.id } })
+      .then((id) => {
+        res.json({ id });
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).json({
+            error: err.message,
           });
-        });
-      } else {
-        res.status(400).json({
-          error: 'Invalid User ID',
-        });
-      }
-    });
+        }
+      });
   });
 };

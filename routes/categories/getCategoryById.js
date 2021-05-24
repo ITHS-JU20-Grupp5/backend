@@ -1,17 +1,13 @@
-const db = require.main.require('./utils/database');
+const CategoryController = require.main.require('./controllers/category.controller');
 
 module.exports = (app) => {
   app.get('/categories/:id', (req, res) => {
-    db.get('select * from categories where Id = ?', req.params.id, (err, row) => {
-      if (err) {
-        res.status(400).json({
-          error: err.message,
-        });
-        return;
-      }
-      res.json({
-        category: row,
+    CategoryController.findById(req.params.id)
+      .then((categories) => {
+        res.json(categories);
+      })
+      .catch((err) => {
+        if (err) res.status(400).json({ error: err.message });
       });
-    });
   });
 };

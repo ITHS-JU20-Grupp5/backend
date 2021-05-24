@@ -1,17 +1,17 @@
-const db = require.main.require('./utils/database');
+const CategoryController = require.main.require('./controllers/category.controller');
 
 module.exports = (app) => {
   app.get('/categories', (req, res) => {
-    db.all('select * from categories', [], (err, rows) => {
-      if (err) {
-        res.status(400).json({
-          error: err.message,
-        });
-        return;
-      }
-      res.json({
-        categories: rows,
+    CategoryController.findAll()
+      .then((categories) => {
+        res.json(categories);
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).json({
+            error: err.message,
+          });
+        }
       });
-    });
   });
 };

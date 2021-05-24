@@ -9,15 +9,9 @@ module.exports = (app) => {
         name: req.body.name,
         email: req.body.email,
       })
-      // eslint-disable-next-line no-unused-vars
-      .then((_response) => {
-        res.json({
-          user: {
-            username: req.body.username,
-            password: req.body.password,
-            name: req.body.name,
-            email: req.body.email,
-          },
+      .then((user) => {
+        res.status(201).json({
+          user: user.data.newUser,
         });
       })
       .catch((err) => {
