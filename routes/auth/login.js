@@ -25,7 +25,7 @@ module.exports = (app) => {
       });
       const newUser = {
         username: user.username,
-        name: user.username,
+        name: user.name,
         email: user.email,
         password: user.password,
         roles: user.roles,

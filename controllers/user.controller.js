@@ -126,6 +126,26 @@ module.exports.addScore = (userId, scoreId) =>
       }
     });
 
+module.exports.update = (values) =>
+    User.update(
+        {
+            name: values.name,
+            password: values.password
+        },
+        {
+            where: {
+                id: values.id,
+            },
+            returning: true,
+        }
+    )
+        .then((updatedUser) => updatedUser)
+        .catch((err) => {
+            if (err) {
+                console.error('Error: ', err.message);
+            }
+        });
+
 module.exports.delete = (options) =>
   User.destroy(options)
     .then((res) => res)

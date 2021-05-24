@@ -12,7 +12,7 @@ module.exports.create = (question) =>
       }
     });
 
-module.exports.update = (values) => {
+module.exports.update = (values) =>
   Question.update(
     {
       question: values.question,
@@ -21,6 +21,7 @@ module.exports.update = (values) => {
       where: {
         id: values.id,
       },
+        returning: true
     }
   )
     .then((updatedQuestion) => updatedQuestion)
@@ -29,7 +30,6 @@ module.exports.update = (values) => {
         console.error('Error: ', err.message);
       }
     });
-};
 
 module.exports.findAll = (where = {}) =>
   Question.findAll({
