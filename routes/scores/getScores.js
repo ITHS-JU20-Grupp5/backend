@@ -11,9 +11,7 @@ module.exports = (app) => {
           });
           return;
         }
-        res.json({
-          scores,
-        });
+        res.json(scores);
       })
       .catch((err) => {
         if (err) {

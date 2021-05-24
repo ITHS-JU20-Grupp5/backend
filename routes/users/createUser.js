@@ -42,9 +42,7 @@ module.exports = (app) => {
           .then(([role]) => {
             UserController.addRole(user.id, role.id)
               .then((newUser) => {
-                res.status(201).json({
-                  newUser,
-                });
+                res.status(201).json(newUser);
               })
               .catch((err) => {
                 if (err) {

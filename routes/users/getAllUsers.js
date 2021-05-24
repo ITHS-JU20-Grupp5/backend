@@ -5,7 +5,7 @@ module.exports = (app) => {
   app.get('/users', verifyAdmin, (req, res) => {
     UserController.findAll()
       .then((users) => {
-        res.json({ users });
+        res.json(users);
       })
       .catch((err) => {
         if (err) {

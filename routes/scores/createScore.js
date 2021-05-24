@@ -2,13 +2,16 @@ const ScoreController = require.main.require('./controllers/score.controller');
 const UserController = require.main.require('./controllers/user.controller');
 const CategoryController = require.main.require('./controllers/category.controller');
 const { verifyUser } = require.main.require('./utils/utilities');
+const { Op } = require('sequelize');
 
 module.exports = (app) => {
   app.post('/scores', verifyUser, (req, res) => {
     const { score, category } = req.body;
     ScoreController.create({ score }).then((newScore) => {
       CategoryController.findOne({
-        category,
+        category: {
+          [Op.iLike]: category,
+        },
       }).then((foundCategory) => {
         CategoryController.addScore(foundCategory.id, newScore.id).then((categoryScore) => {
           if (!categoryScore) {
@@ -24,9 +27,7 @@ module.exports = (app) => {
               });
               return;
             }
-            res.status(201).json({
-              newScore,
-            });
+            res.status(201).json(newScore);
           });
         });
       });

@@ -8,9 +8,7 @@ module.exports = (app) => {
     const [role] = roleRes;
     UserController.addRole(req.params.id, role.id)
       .then((newUser) => {
-        res.json({
-          newUser,
-        });
+        res.json(newUser);
       })
       .catch((err) => {
         if (err) {

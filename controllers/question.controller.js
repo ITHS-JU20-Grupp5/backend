@@ -21,7 +21,7 @@ module.exports.update = (values) =>
       where: {
         id: values.id,
       },
-        returning: true
+      returning: true,
     }
   )
     .then((updatedQuestion) => updatedQuestion)

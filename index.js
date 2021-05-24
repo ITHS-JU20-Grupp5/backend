@@ -31,8 +31,10 @@ function recursiveRoutes(folder) {
     }
   });
 }
-
-db.sequelize.sync().then(async () => {
+const options = {
+  // force: true,
+};
+db.sequelize.sync(options).then(async () => {
   await RoleController.findOrCreate({ role: 'User' });
   await RoleController.findOrCreate({ role: 'Admin' });
 

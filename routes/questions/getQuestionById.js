@@ -4,9 +4,7 @@ module.exports = (app) => {
   app.get('/questions/:id', (req, res) => {
     QuestionController.findById(req.params.id)
       .then((question) => {
-        res.json({
-          question,
-        });
+        res.json(question);
       })
       .catch((err) => {
         if (err) {

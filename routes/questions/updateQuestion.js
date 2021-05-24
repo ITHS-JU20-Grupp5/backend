@@ -4,7 +4,7 @@ const QuestionController = require.main.require('./controllers/question.controll
 module.exports = (app) => {
   app.patch('/questions/:id', verifyAdmin, (req, res) => {
     QuestionController.update({ id: req.params.id, question: req.body.question })
-      .then(([rowsChanged, updatedQuestion]) => {
+      .then(([, updatedQuestion]) => {
         res.json(updatedQuestion);
       })
       .catch((err) => {

@@ -10,9 +10,7 @@ module.exports = (app) => {
         });
         return;
       }
-      res.status(201).json({
-        category,
-      });
+      res.status(201).json(category);
     });
   });
 };

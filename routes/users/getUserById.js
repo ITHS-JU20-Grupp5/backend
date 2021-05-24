@@ -10,7 +10,7 @@ module.exports = (app) => {
         });
         return;
       }
-      res.json({ user });
+      res.json(user);
     });
   });
 };
