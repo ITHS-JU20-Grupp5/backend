@@ -4,7 +4,7 @@ function createQuiz(quizRes, answersAmount, res) {
   const questions = [];
   quizRes.questions.forEach((question) => {
     const answers = [];
-    const questionObj = { question: question.question };
+    const questionObj = { id: question.id, question: question.question };
     const correctAnswer = question.answers.find((answer) => answer.correct === true);
     answers.push({ answer: correctAnswer.answer, correct: correctAnswer.correct });
     const incorrect = question.answers.filter((answer) => answer.correct === false);
@@ -16,6 +16,7 @@ function createQuiz(quizRes, answersAmount, res) {
       if (!addedAnswers.includes(incorrect[incorrectIndex].answer)) {
         const tempAnswer = incorrect[incorrectIndex];
         const answerObj = {
+          id: tempAnswer.id,
           answer: tempAnswer.answer,
           correct: tempAnswer.correct,
         };
