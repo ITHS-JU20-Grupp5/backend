@@ -5,6 +5,7 @@ const { password } = require.main.require('./utils/utilities');
 const User = db.user;
 const Role = db.role;
 const Score = db.score;
+const Verification = db.verification;
 
 module.exports.create = (user) =>
   User.create(user)
@@ -102,6 +103,29 @@ module.exports.addRole = (userId, roleId) =>
         console.error('Error: ', err.message);
       }
     });
+
+module.exports.addVerification = (userId, verificationId) =>
+    User.findByPk(userId)
+        .then((user) => {
+            if (!user) {
+                console.log('No user was found');
+                return null;
+            }
+            return Verification.findByPk(verificationId).then((verification) => {
+                if (!verification) {
+                    console.log('No verification was found');
+                    return null;
+                }
+                user.addVerification(verification);
+                console.log(`Added verification: ${verification.key} to user: ${user.username}`);
+                return user;
+            });
+        })
+        .catch((err) => {
+            if (err) {
+                console.error('Error: ', err.message);
+            }
+        });
 
 module.exports.addScore = (userId, scoreId) =>
   User.findByPk(userId)

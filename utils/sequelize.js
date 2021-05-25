@@ -15,7 +15,7 @@ db.sequelize = sequelize;
 
 fs.readdirSync('./models').forEach((file) => {
   if (file.toLowerCase().indexOf('.js')) {
-    db[file.split('.')[0]] = require(`../models/${file}`)(sequelize, DataTypes);
+    db[file.split('.')[0]] = require(`../models/${file}`)(sequelize, DataTypes, Sequelize);
   }
 });
 

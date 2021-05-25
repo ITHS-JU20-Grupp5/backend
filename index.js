@@ -35,6 +35,7 @@ const options = {
   // force: true,
 };
 db.sequelize.sync(options).then(async () => {
+  await RoleController.findOrCreate({ role: 'Unverified' });
   await RoleController.findOrCreate({ role: 'User' });
   await RoleController.findOrCreate({ role: 'Admin' });
 
