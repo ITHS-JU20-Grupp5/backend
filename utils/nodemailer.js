@@ -53,8 +53,6 @@ module.exports.sendVerification = (userEmail, key) => {
           console.log(error);
         }
       });
-    } else {
-      console.error(err);
     }
   });
 };
@@ -75,8 +73,6 @@ module.exports.sendSpam = (userEmail) => {
           console.log(error);
         }
       });
-    } else {
-      console.error(err);
     }
   });
 };

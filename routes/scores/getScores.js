@@ -3,7 +3,7 @@ const ScoreController = require.main.require('./controllers/score.controller');
 
 module.exports = (app) => {
   app.get('/scores', verifyUser, (req, res) => {
-    ScoreController.finAll({ userId: req.user.id })
+    ScoreController.findAll({ userId: req.user.id })
       .then((scores) => {
         if (!scores) {
           res.status(404).json({
