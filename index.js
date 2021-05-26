@@ -64,7 +64,11 @@ db.sequelize.sync(options).then(async () => {
   );
 
   const port = process.env.PORT || 3000;
+  const url =
+    process.env.NODE_ENV === 'DEV'
+      ? `http://localhost:${port}`
+      : `https://generalknowledge.azurewebsites.com`;
   app.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}`);
+    console.log(`Listening on ${url}`);
   });
 });

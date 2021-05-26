@@ -30,8 +30,8 @@ const readHTMLFile = (filePath, callback) => {
 module.exports.sendVerification = (userEmail, key) => {
   const url =
     process.env.NODE_ENV === 'DEV'
-      ? `http://localhost:${process.env.PORT || 3000}/verify/${key}`
-      : `https://generalknowledge.azurewebsites.com/verify/${key}`;
+      ? `http://localhost:${process.env.PORT || 3000}/auth/verify/${key}`
+      : `https://generalknowledge.azurewebsites.com/auth/verify/${key}`;
 
   readHTMLFile(path.join(__dirname, '/emails/verify.html'), (err, html) => {
     if (html) {
