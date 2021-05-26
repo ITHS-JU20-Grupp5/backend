@@ -1,22 +1,16 @@
-const db = require.main.require('./utils/database');
+const { verifyAdmin } = require.main.require('./utils/utilities');
+const UserController = require.main.require('./controllers/user.controller');
 
 module.exports = (app) => {
-  app.get('/users/:id', (req, res) => {
-    db.get('select * from users where Id = ?', req.params.id, (err, row) => {
-      if (err) {
-        res.status(400).json({
-          error: err.message,
+  app.get('/users/:id', verifyAdmin, (req, res) => {
+    UserController.findById(req.params.id).then((user) => {
+      if (!user) {
+        res.status(404).json({
+          error: 'No user was found',
         });
         return;
       }
-      res.json({
-        user: {
-          id: row.Id,
-          username: row.Username,
-          name: row.Name,
-          email: row.Email,
-        },
-      });
+      res.json(user);
     });
   });
 };

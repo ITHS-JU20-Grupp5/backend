@@ -1,23 +1,22 @@
 const axios = require('axios');
 
+const url =
+  process.env.NODE_ENV === 'DEV'
+    ? `http://localhost:${process.env.PORT || 3000}/users`
+    : 'https://generalknowledge.azurewebsites.com/users';
+
 module.exports = (app) => {
   app.post('/auth/register', (req, res) => {
     axios
-      .post('http://localhost:3000/users', {
+      .post(url, {
         username: req.body.username,
         password: req.body.password,
         name: req.body.name,
         email: req.body.email,
       })
-      // eslint-disable-next-line no-unused-vars
-      .then((_response) => {
-        res.json({
-          user: {
-            username: req.body.username,
-            password: req.body.password,
-            name: req.body.name,
-            email: req.body.email,
-          },
+      .then((user) => {
+        res.status(201).json({
+          user: user.data.newUser,
         });
       })
       .catch((err) => {

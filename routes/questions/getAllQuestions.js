@@ -1,17 +1,17 @@
-const db = require.main.require('./utils/database');
+const QuestionController = require.main.require('./controllers/question.controller');
 
 module.exports = (app) => {
   app.get('/questions', (req, res) => {
-    db.all('select * from questions', [], (err, rows) => {
-      if (err) {
-        res.status(400).json({
-          error: err.message,
-        });
-        return;
-      }
-      res.json({
-        questions: rows,
+    QuestionController.findAll()
+      .then((questions) => {
+        res.json(questions);
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).json({
+            error: err.message,
+          });
+        }
       });
-    });
   });
 };

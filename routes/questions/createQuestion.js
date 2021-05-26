@@ -1,51 +1,25 @@
-const db = require.main.require('./utils/database');
 const { verifyAdmin } = require.main.require('./utils/utilities');
+const QuestionController = require.main.require('./controllers/question.controller');
+const CategoryController = require.main.require('./controllers/category.controller');
 
 module.exports = (app) => {
   app.post('/categories/:id/questions', verifyAdmin, (req, res) => {
     const { question } = req.body;
-    if (!question) {
-      res.status(400).json({
-        error: 'Please enter a question',
-      });
-      return;
-    }
-    db.get('select * from questions where Question = ?', question, (getErr, row) => {
-      if (getErr) {
-        res.status(400).json({
-          error: getErr.message,
-        });
-        return;
-      }
-      if (row) {
+    QuestionController.findOrCreate({ question }).then(([newQuestion, created]) => {
+      if (!created) {
         res.status(409).json({
-          message: 'Question already in database',
+          message: 'That question already exists',
         });
         return;
       }
-      db.run('insert into questions (Question) values (?)', question, function (runErr) {
-        if (runErr) {
-          res.status(400).json({
-            error: runErr.message,
+      CategoryController.addQuestion(req.params.id, newQuestion.id).then(async (newCategory) => {
+        if (!newCategory) {
+          res.status(404).json({
+            error: 'Category or Question not found',
           });
           return;
         }
-        const questionId = this.lastID;
-        db.run(
-          'insert into category_questions (CategoryId, QuestionId) values (?, ?)',
-          [req.params.id, questionId],
-          (err) => {
-            if (err) {
-              res.status(400).json({
-                error: err.message,
-              });
-              return;
-            }
-            res.status(201).json({
-              id: questionId,
-            });
-          }
-        );
+        res.json(newQuestion);
       });
     });
   });

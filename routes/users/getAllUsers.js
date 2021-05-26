@@ -1,26 +1,18 @@
-const db = require.main.require('./utils/database');
+const { verifyAdmin } = require.main.require('./utils/utilities');
+const UserController = require.main.require('./controllers/user.controller');
 
 module.exports = (app) => {
-  app.get('/users', (req, res) => {
-    db.all('select * from users', [], (err, rows) => {
-      if (err) {
-        res.status(400).json({
-          error: err.message,
-        });
-        return;
-      }
-      const users = [];
-      rows.forEach((row) => {
-        users.push({
-          id: row.Id,
-          username: row.Username,
-          name: row.Name,
-          email: row.Email,
-        });
+  app.get('/users', verifyAdmin, (req, res) => {
+    UserController.findAll()
+      .then((users) => {
+        res.json(users);
+      })
+      .catch((err) => {
+        if (err) {
+          res.status(400).json({
+            error: err.message,
+          });
+        }
       });
-      res.json({
-        users,
-      });
-    });
   });
 };
