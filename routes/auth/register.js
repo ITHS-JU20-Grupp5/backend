@@ -1,9 +1,14 @@
 const axios = require('axios');
 
+const url =
+  process.env.NODE_ENV === 'DEV'
+    ? `http://localhost:${process.env.PORT || 3000}`
+    : 'https://generalknowledge.azurewebsites.com';
+
 module.exports = (app) => {
   app.post('/auth/register', (req, res) => {
     axios
-      .post('http://localhost:3000/users', {
+      .post(url, {
         username: req.body.username,
         password: req.body.password,
         name: req.body.name,

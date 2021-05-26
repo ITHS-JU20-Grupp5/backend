@@ -5,6 +5,7 @@ const { password } = require.main.require('./utils/utilities');
 const User = db.user;
 const Role = db.role;
 const Score = db.score;
+const Verification = db.verification;
 
 module.exports.create = (user) =>
   User.create(user)
@@ -103,6 +104,29 @@ module.exports.addRole = (userId, roleId) =>
       }
     });
 
+module.exports.setVerification = (userId, verificationId) =>
+  User.findByPk(userId)
+    .then((user) => {
+      if (!user) {
+        console.log('No user was found');
+        return null;
+      }
+      return Verification.findByPk(verificationId).then((verification) => {
+        if (!verification) {
+          console.log('No verification was found');
+          return null;
+        }
+        user.setVerification(verification);
+        console.log(`Set verification: ${verification.key} to user: ${user.username}`);
+        return user;
+      });
+    })
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
 module.exports.addScore = (userId, scoreId) =>
   User.findByPk(userId)
     .then((user) => {
@@ -140,6 +164,33 @@ module.exports.update = (values) =>
     }
   )
     .then((updatedUser) => updatedUser)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.updateSpam = (id) =>
+  User.findByPk(id)
+    .then((user) => {
+      User.update(
+        {
+          spam: !user.spam,
+        },
+        {
+          where: {
+            id,
+          },
+          returning: true,
+        }
+      )
+        .then((updatedUser) => updatedUser)
+        .catch((err) => {
+          if (err) {
+            console.error('Error: ', err.message);
+          }
+        });
+    })
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);

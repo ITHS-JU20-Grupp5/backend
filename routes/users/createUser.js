@@ -1,6 +1,8 @@
 const { validate } = require.main.require('./utils/utilities');
 const UserController = require.main.require('./controllers/user.controller');
 const RoleController = require.main.require('./controllers/role.controller');
+const VerificationController = require.main.require('./controllers/verification.controller');
+const { sendVerification } = require.main.require('./utils/nodemailer');
 
 // TODO: Change external validation to internal db constraints
 module.exports = (app) => {
@@ -38,11 +40,32 @@ module.exports = (app) => {
           });
           return;
         }
-        RoleController.findOrCreate({ role: 'User' })
+        RoleController.findOrCreate({ role: 'Unverified' })
           .then(([role]) => {
             UserController.addRole(user.id, role.id)
-              .then((newUser) => {
-                res.status(201).json(newUser);
+              .then(() => {
+                VerificationController.create()
+                  .then((verification) => {
+                    UserController.setVerification(user.id, verification.id)
+                      .then((newUser) => {
+                        sendVerification(newUser.email, verification.key);
+                        res.status(201).json(newUser);
+                      })
+                      .catch((err) => {
+                        if (err) {
+                          res.status(400).json({
+                            error: err.message,
+                          });
+                        }
+                      });
+                  })
+                  .catch((err) => {
+                    if (err) {
+                      res.status(400).json({
+                        error: err.message,
+                      });
+                    }
+                  });
               })
               .catch((err) => {
                 if (err) {

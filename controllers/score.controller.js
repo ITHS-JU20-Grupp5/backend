@@ -2,6 +2,7 @@ const db = require('../utils/sequelize');
 
 const User = db.user;
 const Score = db.score;
+const Category = db.category;
 
 module.exports.create = (score) =>
   Score.create(score)
@@ -19,6 +20,9 @@ module.exports.findAll = (where = {}) =>
       {
         model: User,
       },
+      {
+        model: Category,
+      },
     ],
   })
     .then((scores) => scores)
@@ -33,6 +37,9 @@ module.exports.findById = (id) =>
     include: [
       {
         model: User,
+      },
+      {
+        model: Category,
       },
     ],
   })
