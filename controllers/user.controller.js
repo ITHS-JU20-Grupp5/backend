@@ -104,28 +104,28 @@ module.exports.addRole = (userId, roleId) =>
       }
     });
 
-module.exports.addVerification = (userId, verificationId) =>
-    User.findByPk(userId)
-        .then((user) => {
-            if (!user) {
-                console.log('No user was found');
-                return null;
-            }
-            return Verification.findByPk(verificationId).then((verification) => {
-                if (!verification) {
-                    console.log('No verification was found');
-                    return null;
-                }
-                user.addVerification(verification);
-                console.log(`Added verification: ${verification.key} to user: ${user.username}`);
-                return user;
-            });
-        })
-        .catch((err) => {
-            if (err) {
-                console.error('Error: ', err.message);
-            }
-        });
+module.exports.setVerification = (userId, verificationId) =>
+  User.findByPk(userId)
+    .then((user) => {
+      if (!user) {
+        console.log('No user was found');
+        return null;
+      }
+      return Verification.findByPk(verificationId).then((verification) => {
+        if (!verification) {
+          console.log('No verification was found');
+          return null;
+        }
+        user.setVerification(verification);
+        console.log(`Set verification: ${verification.key} to user: ${user.username}`);
+        return user;
+      });
+    })
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
 
 module.exports.addScore = (userId, scoreId) =>
   User.findByPk(userId)
@@ -164,6 +164,33 @@ module.exports.update = (values) =>
     }
   )
     .then((updatedUser) => updatedUser)
+    .catch((err) => {
+      if (err) {
+        console.error('Error: ', err.message);
+      }
+    });
+
+module.exports.updateSpam = (id) =>
+  User.findByPk(id)
+    .then((user) => {
+      User.update(
+        {
+          spam: !user.spam,
+        },
+        {
+          where: {
+            id,
+          },
+          returning: true,
+        }
+      )
+        .then((updatedUser) => updatedUser)
+        .catch((err) => {
+          if (err) {
+            console.error('Error: ', err.message);
+          }
+        });
+    })
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);

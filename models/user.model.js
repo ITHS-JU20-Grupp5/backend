@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    spam: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
   });
 
   return User;
