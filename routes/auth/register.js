@@ -3,7 +3,7 @@ const axios = require('axios');
 const url =
   process.env.NODE_ENV === 'DEV'
     ? `http://localhost:${process.env.PORT || 3000}/users`
-    : 'https://generalknowledge.azurewebsites.com/users';
+    : 'https://generalknowledge.azurewebsites.net/users';
 
 module.exports = (app) => {
   app.post('/auth/register', (req, res) => {
