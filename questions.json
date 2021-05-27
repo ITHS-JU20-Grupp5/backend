@@ -12,10 +12,10 @@
       "category": "Allmän Fakta",
       "questions": [
         {
-          "question": "Dan Aykroyd skrev original konceptet till vilket franchise i början av 80-talet?",
+          "question": "Vilken franchise i början av 80-talet kom Dan Aykroyd på idén till?",
           "answers": [
             {
-              "answer": "GhostBusters",
+              "answer": "Ghostbusters",
               "correct": true
             },
             {
@@ -129,7 +129,7 @@
           ]
         },
         {
-          "question": "Vad heter den världskända serietecknade katten som älskar lasange?",
+          "question": "Vad heter den världskända serietecknade katten som älskar lasagne?",
           "answers": [
             {
               "answer": "Gustaf",
@@ -187,7 +187,7 @@
           ]
         },
         {
-          "question": "Vad heter den första presidenten i USA?",
+          "question": "Vad hette den första presidenten i USA?",
           "answers": [
             {
               "answer": "Thomas Jefferson",
@@ -221,7 +221,7 @@
       "category": "Musik",
       "questions": [
         {
-          "question": "Eine Klein Nachtmusik var skrivit av vilken kompositer",
+          "question": "Eine Kleine Nachtmusik var skrivet av vilken kompositör?",
           "answers": [
             {
               "answer": "Mozart",
@@ -250,7 +250,7 @@
           ]
         },
         {
-          "question": "I vilket år spelade Jimi Hendrix the Star Spangled Banner på Woodstock?",
+          "question": "Vilket år spelade Jimi Hendrix the Star Spangled Banner på Woodstock?",
           "answers": [
             {
               "answer": "1969",
@@ -279,7 +279,7 @@
           ]
         },
         {
-          "question": "Vad heter Frank Zappa's band som började i 60-talet?",
+          "question": "Vad heter Frank Zappas band som började på 60-talet?",
           "answers": [
             {
               "answer": "The Mothers of Invention",
@@ -366,7 +366,7 @@
           ]
         },
         {
-          "question": "Vilken kände gitarist spelade riffen på Michael Jackson's Beat It?",
+          "question": "Vilken känd gitarrist spelade riffen på Michael Jacksons Beat It?",
           "answers": [
             {
               "answer": "Steve Lukather",
@@ -395,7 +395,7 @@
           ]
         },
         {
-          "question": "Vem uppfann Stratocater gitaren?",
+          "question": "Vem uppfann gitarren Stratocaster?",
           "answers": [
             {
               "answer": "Leo Fender",
@@ -453,7 +453,7 @@
           ]
         },
         {
-          "question": "C, G, D, A... Vad komma näst i femtedelcirkel?",
+          "question": "C, G, D, A... Vad kommer näst i kvintcirkeln?",
           "answers": [
             {
               "answer": "E",
@@ -482,7 +482,7 @@
           ]
         },
         {
-          "question": "Vilken så-kallade mode låta mest Spansk?",
+          "question": "Vilket modus är spanskt?",
           "answers": [
             {
               "answer": "Phrygian",
@@ -603,7 +603,7 @@
           ]
         },
         {
-          "question": "Under vilket år sjönk titanic?",
+          "question": "Vilket år sjönk titanic?",
           "answers": [
             {
               "answer": "1912",
@@ -640,10 +640,10 @@
           ]
         },
         {
-          "question": "Vad heter kungen från gamla Macedonian som besegrade perserna och grundade flera stader i sitt egen namn?",
+          "question": "Vad heter kungen från gamla Makedonien som besegrade perserna och grundade flera städer i sitt namn?",
           "answers": [
             {
-              "answer": "Alexander the Great",
+              "answer": "Alexander den store",
               "correct": true
             },
             {
@@ -722,7 +722,7 @@
           ]
         },
         {
-          "question": "Vilken pharaoh uppfann en helt ny monotheistisk religion?",
+          "question": "Vilken farao uppfann en helt ny monoteistisk religion?",
           "answers": [
             {
               "answer": "Akhenaten",
@@ -817,7 +817,7 @@
           ]
         },
         {
-          "question": "Vem var högsta befälhavare över alla Allied Forces under slutet av andra världskriget?",
+          "question": "Vem var högsta befälhavare över de Allierade under slutet av andra världskriget?",
           "answers": [
             {
               "answer": "Gen. Eisenhauer",
@@ -996,7 +996,7 @@
           ]
         },
         {
-          "question": "Vem har gjort mest mål i Fotbolls VM mästerskapen någonsin?",
+          "question": "Vem har gjort mest mål i världsmästerskapen i fotboll någonsin?",
           "answers": [
             {
               "answer": "Miroslav Klose",
@@ -1083,7 +1083,7 @@
           ]
         },
         {
-          "question": "Vad kalls Nya Zeelands herrlandslag i rugby?",
+          "question": "Vad kallas Nya Zeelands herrlandslag i rugby?",
           "answers": [
             {
               "answer": "All Blacks",
@@ -1322,11 +1322,11 @@
               "correct": true
             },
             {
-              "answer": "Nord Amerika",
+              "answer": "Nordamerika",
               "correct": false
             },
             {
-              "answer": "Syd Amerika",
+              "answer": "Sydamerika",
               "correct": false
             },
             {
