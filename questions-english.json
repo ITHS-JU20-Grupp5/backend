@@ -9,13 +9,13 @@
   ],
   "quiz": [
     {
-      "category": "Allmän Fakta",
+      "category": "General Knowledge",
       "questions": [
         {
-          "question": "Vilken franchise i början av 80-talet kom Dan Aykroyd på idén till?",
+          "question": "Dan Aykroyd came up with the original concept to which famous franchise at the start of the 1980's?",
           "answers": [
             {
-              "answer": "Ghostbusters",
+              "answer": "GhostBusters",
               "correct": true
             },
             {
@@ -41,7 +41,7 @@
           ]
         },
         {
-          "question": "Hur många hjärtan har en bläckfisk?",
+          "question": "How many hearts does an octopus have?",
           "answers": [
             {
               "answer": "1",
@@ -70,7 +70,7 @@
           ]
         },
         {
-          "question": "Hur många sidor har en oktagon?",
+          "question": "How many sides does an octagon have?",
           "answers": [
             {
               "answer": "3",
@@ -100,39 +100,39 @@
           ]
         },
         {
-          "question": "När lanserades den första iPhonen?",
+          "question": "When was the first iPhone launched?",
           "answers": [
             {
-              "answer": "9 januari 2007",
+              "answer": "9 January 2007",
               "correct": true
             },
             {
-              "answer": "20 oktober 2006",
+              "answer": "20 October 2006",
               "correct": false
             },
             {
-              "answer": "15 mars 2008",
+              "answer": "15 March 2008",
               "correct": false
             },
             {
-              "answer": "29 juni 2007",
+              "answer": "29 June 2007",
               "correct": false
             },
             {
-              "answer": "15 december 2005",
+              "answer": "15 December 2005",
               "correct": false
             },
             {
-              "answer": "23 maj 2006",
+              "answer": "23 May 2006",
               "correct": false
             }
           ]
         },
         {
-          "question": "Vad heter den världskända serietecknade katten som älskar lasagne?",
+          "question": "What is the name of the world-famous cartoon cat who loves lasagna?",
           "answers": [
             {
-              "answer": "Gustaf",
+              "answer": "Garfield",
               "correct": true
             },
             {
@@ -140,36 +140,36 @@
               "correct": false
             },
             {
-              "answer": "Prosit",
+              "answer": "Dennis",
               "correct": false
             },
             {
-              "answer": "Rattata",
+              "answer": "Roland",
               "correct": false
             },
             {
-              "answer": "Nalle Puh",
+              "answer": "Tigger",
               "correct": false
             },
             {
-              "answer": "Bamse",
+              "answer": "Simba",
               "correct": false
             }
           ]
         },
         {
-          "question": "Vad jobbade Al Capone med enligt hans visitkort?",
+          "question": "According to his business card, what was Al Capone's profession?",
           "answers": [
             {
-              "answer": "Barberare",
+              "answer": "Barber",
               "correct": false
             },
             {
-              "answer": "Polis",
+              "answer": "Police officer",
               "correct": false
             },
             {
-              "answer": "Programmerare",
+              "answer": "Programmer",
               "correct": false
             },
             {
@@ -177,17 +177,17 @@
               "correct": false
             },
             {
-              "answer": "Möbelförsäljare",
+              "answer": "Furniture salesman",
               "correct": true
             },
             {
-              "answer": "Ingenjör",
+              "answer": "Engineer",
               "correct": false
             }
           ]
         },
         {
-          "question": "Vad hette den första presidenten i USA?",
+          "question": "Who was the first president of the USA?",
           "answers": [
             {
               "answer": "Thomas Jefferson",
@@ -218,10 +218,10 @@
       ]
     },
     {
-      "category": "Musik",
+      "category": "Music",
       "questions": [
         {
-          "question": "Eine Kleine Nachtmusik var skrivet av vilken kompositör?",
+          "question": "Eine Klein Nachtmusik was written by which composer?",
           "answers": [
             {
               "answer": "Mozart",
@@ -250,7 +250,7 @@
           ]
         },
         {
-          "question": "Vilket år spelade Jimi Hendrix the Star Spangled Banner på Woodstock?",
+          "question": "In which year did Jimi Hendrix famously play the Star Spangled Banner at Woodstock?",
           "answers": [
             {
               "answer": "1969",
@@ -279,7 +279,7 @@
           ]
         },
         {
-          "question": "Vad heter Frank Zappas band som började på 60-talet?",
+          "question": "What was the name of Frank Zappa's band at the start of the 1960's?",
           "answers": [
             {
               "answer": "The Mothers of Invention",
@@ -308,7 +308,7 @@
           ]
         },
         {
-          "question": "Vad hette sångaren i Queen?",
+          "question": "Who was the singer in Queen?",
           "answers": [
             {
               "answer": "Freddie Mercury",
@@ -337,7 +337,7 @@
           ]
         },
         {
-          "question": "Vem spelar trummor i bandet Metallica?",
+          "question": "Who plays drums for Metallica?",
           "answers": [
             {
               "answer": "Lars Ulrich",
@@ -366,7 +366,7 @@
           ]
         },
         {
-          "question": "Vilken känd gitarrist spelade riffen på Michael Jacksons Beat It?",
+          "question": "Which famous guitarist played the riff in Michael Jackson's Beat It?",
           "answers": [
             {
               "answer": "Steve Lukather",
@@ -395,7 +395,7 @@
           ]
         },
         {
-          "question": "Vem uppfann gitarren Stratocaster?",
+          "question": "Who invented the Stratocaster guitar?",
           "answers": [
             {
               "answer": "Leo Fender",
@@ -424,7 +424,7 @@
           ]
         },
         {
-          "question": "Vem skrev musiken till filmen Gladiator?",
+          "question": "Who wrote the score to the film Gladiator?",
           "answers": [
             {
               "answer": "Hans Zimmer",
@@ -453,7 +453,7 @@
           ]
         },
         {
-          "question": "C, G, D, A... Vad kommer näst i kvintcirkeln?",
+          "question": "C, G, D, A... what comes next in the circle of fifths?",
           "answers": [
             {
               "answer": "E",
@@ -482,7 +482,7 @@
           ]
         },
         {
-          "question": "Vilket modus är spanskt?",
+          "question": "Which musical mode sounds the most typically 'Spanish'?",
           "answers": [
             {
               "answer": "Phrygian",
@@ -513,10 +513,10 @@
       ]
     },
     {
-      "category": "Historia",
+      "category": "History",
       "questions": [
         {
-          "question": "Hur många människor rymde de största gaskamrarna i koncentrationslägret Auschwitz?",
+          "question": "How many people escaped the largest gas chambers in the Auschwitz concentration camp??",
           "answers": [
             {
               "answer": "500",
@@ -545,7 +545,7 @@
           ]
         },
         {
-          "question": "När grundades Kalmarunionen?",
+          "question": "When was the Kalmar Union founded?",
           "answers": [
             {
               "answer": "1401",
@@ -574,36 +574,36 @@
           ]
         },
         {
-          "question": "När skedde landstigningen av Normandie (D-day)?",
+          "question": "When did the Allied forces launch the Normandy invasion (D-day)?",
           "answers": [
             {
-              "answer": "6 juni 1944",
+              "answer": "6 June 1944",
               "correct": true
             },
             {
-              "answer": "6 juli 1944",
+              "answer": "6 July 1944",
               "correct": false
             },
             {
-              "answer": "6 juni 1943",
+              "answer": "6 June 1943",
               "correct": false
             },
             {
-              "answer": "6 augusti 1944",
+              "answer": "6 August 1944",
               "correct": false
             },
             {
-              "answer": "6 maj 1944",
+              "answer": "6 May 1944",
               "correct": false
             },
             {
-              "answer": "6 juni 1945",
+              "answer": "6 June 1945",
               "correct": false
             }
           ]
         },
         {
-          "question": "Vilket år sjönk titanic?",
+          "question": "In which year did the Titanic sink?",
           "answers": [
             {
               "answer": "1912",
@@ -640,10 +640,10 @@
           ]
         },
         {
-          "question": "Vad heter kungen från gamla Makedonien som besegrade perserna och grundade flera städer i sitt namn?",
+          "question": "What is the name of the ancient Macedonian king who defeated the Persians and founded several cities in his own name?",
           "answers": [
             {
-              "answer": "Alexander den store",
+              "answer": "Alexander the Great",
               "correct": true
             },
             {
@@ -681,7 +681,7 @@
           ]
         },
         {
-          "question": "Vem var Gamla Roms första Kejsare?",
+          "question": "Who was the first Emperor of Rome?",
           "answers": [
             {
               "answer": "Augustus",
@@ -722,7 +722,7 @@
           ]
         },
         {
-          "question": "Vilken farao uppfann en helt ny monoteistisk religion?",
+          "question": "Which Pharaoh created a new, monotheistic religion?",
           "answers": [
             {
               "answer": "Akhenaten",
@@ -759,7 +759,7 @@
           ]
         },
         {
-          "question": "Vilken spansk kung beslutade att skapa det museum som i dag är känt som Pradomuseet?",
+          "question": "What Spanish king founded the museum that is today known as the Prado Museum?",
           "answers": [
             {
               "answer": "Ferdinand VI",
@@ -788,7 +788,7 @@
           ]
         },
         {
-          "question": "Vilket år slutade amerikanska inbördeskriget?",
+          "question": "In which year did the American Civil War end?",
           "answers": [
             {
               "answer": "1865",
@@ -817,7 +817,7 @@
           ]
         },
         {
-          "question": "Vem var högsta befälhavare över de Allierade under slutet av andra världskriget?",
+          "question": "Who was the Supreme Commander of the Allied forces in the final stages of World War II?",
           "answers": [
             {
               "answer": "Gen. Eisenhauer",
@@ -851,7 +851,7 @@
       "category": "Sport",
       "questions": [
         {
-          "question": "Hur många guldmedaljer är rekordet under ett och samma OS mästerskap?",
+          "question": "What is the record for most gold medals in a single Olympic Games?",
           "answers": [
             {
               "answer": "8",
@@ -880,7 +880,7 @@
           ]
         },
         {
-          "question": "Hur många bilar finns det på startfältet i ett F1 lopp?",
+          "question": "How many cars make the starting grid in a Formula One race?",
           "answers": [
             {
               "answer": "20",
@@ -909,7 +909,7 @@
           ]
         },
         {
-          "question": "Hur många timmar varade den lägsta hockeymatchen någonsin?",
+          "question": "How many hours was the longest ever hockey match?",
           "answers": [
             {
               "answer": "8",
@@ -938,7 +938,7 @@
           ]
         },
         {
-          "question": "När startade Allsvenskan?",
+          "question": "When did the Allsvenskan (Swedish football league) start?",
           "answers": [
             {
               "answer": "1924",
@@ -967,7 +967,7 @@
           ]
         },
         {
-          "question": "Vem är den bäste tennisspelaren genom tiderna?",
+          "question": "Going on grand slam titles, who is the best tennis player of all time?",
           "answers": [
             {
               "answer": "Roger Federer",
@@ -996,7 +996,7 @@
           ]
         },
         {
-          "question": "Vem har gjort mest mål i världsmästerskapen i fotboll någonsin?",
+          "question": "Who has scored the most goals of all time in the football world cup?",
           "answers": [
             {
               "answer": "Miroslav Klose",
@@ -1025,7 +1025,7 @@
           ]
         },
         {
-          "question": "Vilket av följande lag är INTE representerat av en stjärna i Champions Leagues logo?",
+          "question": "Which of the following teams is not represented by a star in the Champions League logo?",
           "answers": [
             {
               "answer": "Barcelona",
@@ -1054,7 +1054,7 @@
           ]
         },
         {
-          "question": "Vilket lag har Sven-Göran Eriksson Inte tränat?",
+          "question": "Which of the following teams has Sven-Göran Eriksson not trained?",
           "answers": [
             {
               "answer": "Juventus",
@@ -1083,7 +1083,7 @@
           ]
         },
         {
-          "question": "Vad kallas Nya Zeelands herrlandslag i rugby?",
+          "question": "What is the famous name of the New Zealand rugby team?",
           "answers": [
             {
               "answer": "All Blacks",
@@ -1112,7 +1112,7 @@
           ]
         },
         {
-          "question": "Vad kallas Sveriges landslag i hockey?",
+          "question": "What name is given to Sweden's national hockey team?",
           "answers": [
             {
               "answer": "Tre kronor",
@@ -1143,46 +1143,46 @@
       ]
     },
     {
-      "category": "Geografi",
+      "category": "Geography",
       "questions": [
         {
-          "question": "I vilket land ligger vandringsleden Milfort Track?",
+          "question": "In which country is the Milford Track hiking trail?",
           "answers": [
             {
               "answer": "USA",
               "correct": false
             },
             {
-              "answer": "Sydafrika",
+              "answer": "South Africa",
               "correct": false
             },
             {
-              "answer": "Kanada",
+              "answer": "Canada",
               "correct": false
             },
             {
-              "answer": "Australien",
+              "answer": "Australia",
               "correct": false
             },
             {
-              "answer": "Nya Zeeland",
+              "answer": "New Zealand",
               "correct": true
             },
             {
-              "answer": "Storbritannien",
+              "answer": "United Kingdom",
               "correct": false
             }
           ]
         },
         {
-          "question": "I vilket land ligger vulkanen Etna?",
+          "question": "In which country would you find Mt. Etna?",
           "answers": [
             {
-              "answer": "Island",
+              "answer": "Iceland",
               "correct": false
             },
             {
-              "answer": "Italien",
+              "answer": "Italy",
               "correct": true
             },
             {
@@ -1190,7 +1190,7 @@
               "correct": false
             },
             {
-              "answer": "Teneriffa",
+              "answer": "Tenerife",
               "correct": false
             },
             {
@@ -1198,13 +1198,13 @@
               "correct": false
             },
             {
-              "answer": "Indonesien",
+              "answer": "Indonesia",
               "correct": false
             }
           ]
         },
         {
-          "question": "Vilken är den tredje största staden i USA?",
+          "question": "What is the third largest city in the USA?",
           "answers": [
             {
               "answer": "Chicago",
@@ -1253,7 +1253,7 @@
           ]
         },
         {
-          "question": "Vilken är världens största stad?",
+          "question": "What is the largest city on Earth by population?",
           "answers": [
             {
               "answer": "Delhi",
@@ -1282,14 +1282,14 @@
           ]
         },
         {
-          "question": "Vilken av de amerikanska delstaterna är folkrikast?",
+          "question": "Which US state is the most populous?",
           "answers": [
             {
               "answer": "Pennsylvania",
               "correct": false
             },
             {
-              "answer": "Kalifornien",
+              "answer": "California",
               "correct": true
             },
             {
@@ -1311,34 +1311,34 @@
           ]
         },
         {
-          "question": "Vilken kontinent ligger Kanarieöarna på?",
+          "question": "The Canary Islands are a part of which continent?",
           "answers": [
             {
-              "answer": "Europa",
+              "answer": "Europe",
               "correct": false
             },
             {
-              "answer": "Afrika",
+              "answer": "Africa",
               "correct": true
             },
             {
-              "answer": "Nordamerika",
+              "answer": "North America",
               "correct": false
             },
             {
-              "answer": "Sydamerika",
+              "answer": "South America",
               "correct": false
             },
             {
-              "answer": "Asien",
+              "answer": "Asia",
               "correct": false
             },
             {
-              "answer": "Antarktis",
+              "answer": "Antarctica",
               "correct": false
             },
             {
-              "answer": "Oceanien",
+              "answer": "Oceania",
               "correct": false
             }
           ]

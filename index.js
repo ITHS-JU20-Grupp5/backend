@@ -14,7 +14,11 @@ const UserController = require('./controllers/user.controller');
 const { sendSpam } = require('./utils/nodemailer');
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ['http://localhost:8080', 'https://generalknowledge-quiz.herokuapp.com'],
+  })
+);
 app.use(
   bodyParser.urlencoded({
     extended: false,
