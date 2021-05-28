@@ -19,7 +19,7 @@ module.exports = (app) => {
             UserController.addRole(user.id, role.id)
               .then(async () => {
                 await verification.destroy();
-                res.send('You have been verified');
+                res.redirect('https://generalknowledge-quiz.herokuapp.com');
               })
               .catch((err) => {
                 if (err) {
