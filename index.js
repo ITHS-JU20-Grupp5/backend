@@ -17,6 +17,7 @@ const app = express();
 app.use(
   cors({
     origin: ['http://localhost:8080', 'https://generalknowledge-quiz.herokuapp.com'],
+    preflightContinue: true,
   })
 );
 app.use(
