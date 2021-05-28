@@ -16,8 +16,11 @@ const { sendSpam } = require('./utils/nodemailer');
 const app = express();
 app.use(
   cors({
-    origin: ['http://localhost:8080', 'https://generalknowledge-quiz.herokuapp.com'],
-    preflightContinue: true,
+    origin: [
+      'http://localhost:8080',
+      'http://generalknowledge-quiz.herokuapp.com',
+      'https://generalknowledge-quiz.herokuapp.com',
+    ],
   })
 );
 app.use(
