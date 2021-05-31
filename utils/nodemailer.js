@@ -42,7 +42,7 @@ module.exports.sendVerification = (userEmail, key) => {
       };
       const compiledHtml = template(replacements);
       const options = {
-        from: 'General Chaos <general-knowledge-quiz@outlook.com',
+        from: 'General Chaos <general-knowledge-quiz@outlook.com>',
         to: userEmail,
         subject: 'The General needs you...',
         text: `Verify your email by following this link: ${url}`,
