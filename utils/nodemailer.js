@@ -12,9 +12,9 @@ const transport = nodemailer.createTransport({
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,
   },
-  pool: {
-    maxConnections: 3,
-  },
+  pool: true,
+  maxConnections: 1,
+  maxMessages: 1,
 });
 
 const readHTMLFile = (filePath, callback) => {
@@ -27,7 +27,7 @@ const readHTMLFile = (filePath, callback) => {
   });
 };
 
-module.exports.sendVerification = (userEmail, key) => {
+module.exports.sendVerification = (user, key) => {
   const url =
     process.env.NODE_ENV === 'DEV'
       ? `http://localhost:${process.env.PORT || 3000}`
@@ -43,7 +43,7 @@ module.exports.sendVerification = (userEmail, key) => {
       const compiledHtml = template(replacements);
       const options = {
         from: 'General Chaos <general-knowledge-quiz@outlook.com>',
-        to: userEmail,
+        to: user.email,
         subject: 'The General needs you...',
         text: `Verify your email by following this link: ${url}`,
         html: compiledHtml,
@@ -58,24 +58,37 @@ module.exports.sendVerification = (userEmail, key) => {
   });
 };
 
-// Send newsletter (ie spam) function below works, but limited by numeracy constraints so has been removed from production
+module.exports.sendSpam = (user) => {
+  const url =
+    process.env.NODE_ENV === 'DEV'
+      ? `http://localhost:${process.env.PORT || 3000}`
+      : `https://generalknowledge.azurewebsites.net`;
 
-// module.exports.sendSpam = (userEmail) => {
-//   readHTMLFile(path.join(__dirname, '/emails/daily.html'), (err, html) => {
-//     if (html) {
-//       const options = {
-//         from: 'General Chaos <general-knowledge-quiz@outlook.com>',
-//         to: userEmail,
-//         subject: 'The General needs you...',
-//         text: `Coming soon`,
-//         html,
-//       };
-//
-//       transport.sendMail(options, (error) => {
-//         if (error) {
-//           console.log(error);
-//         }
-//       });
-//     }
-//   });
-// };
+  const categories = ['General Knowledge', 'History', 'Sports', 'Geography', 'Music'];
+
+  readHTMLFile(path.join(__dirname, '/emails/daily.html'), (err, html) => {
+    if (html) {
+      const template = handlebars.compile(html);
+      const replacements = {
+        url: 'https://generalknowledge-quiz.herokuapp.com/quiz',
+        name: user.name,
+        category: categories[Math.floor(Math.random() * categories.length)].toLowerCase(),
+        unsubUrl: `${url}/user/emails?email=${user.email}`,
+      };
+      const compiledHtml = template(replacements);
+      const options = {
+        from: 'General Chaos <general-knowledge-quiz@outlook.com>',
+        to: user.email,
+        subject: 'The General needs you...',
+        text: `Coming soon`,
+        html: compiledHtml,
+      };
+
+      transport.sendMail(options, (error) => {
+        if (error) {
+          console.log(error);
+        }
+      });
+    }
+  });
+};
