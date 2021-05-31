@@ -42,7 +42,7 @@ module.exports.sendVerification = (userEmail, key) => {
       };
       const compiledHtml = template(replacements);
       const options = {
-        from: 'General Chaos <general-knowledge-quiz@outlook.com',
+        from: 'General Chaos <general-knowledge-quiz@outlook.com>',
         to: userEmail,
         subject: 'The General needs you...',
         text: `Verify your email by following this link: ${url}`,
@@ -58,22 +58,24 @@ module.exports.sendVerification = (userEmail, key) => {
   });
 };
 
-module.exports.sendSpam = (userEmail) => {
-  readHTMLFile(path.join(__dirname, '/emails/daily.html'), (err, html) => {
-    if (html) {
-      const options = {
-        from: 'General Chaos <general-knowledge-quiz@outlook.com',
-        to: userEmail,
-        subject: 'The General needs you...',
-        text: `Coming soon`,
-        html,
-      };
+// Send newsletter (ie spam) function below works, but limited by numeracy constraints so has been removed from production
 
-      transport.sendMail(options, (error) => {
-        if (error) {
-          console.log(error);
-        }
-      });
-    }
-  });
-};
+// module.exports.sendSpam = (userEmail) => {
+//   readHTMLFile(path.join(__dirname, '/emails/daily.html'), (err, html) => {
+//     if (html) {
+//       const options = {
+//         from: 'General Chaos <general-knowledge-quiz@outlook.com>',
+//         to: userEmail,
+//         subject: 'The General needs you...',
+//         text: `Coming soon`,
+//         html,
+//       };
+//
+//       transport.sendMail(options, (error) => {
+//         if (error) {
+//           console.log(error);
+//         }
+//       });
+//     }
+//   });
+// };
