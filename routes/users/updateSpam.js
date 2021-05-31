@@ -1,12 +1,10 @@
 const UserController = require.main.require('./controllers/user.controller');
-const { verifyUser } = require.main.require('./utils/utilities');
+// const { verifyUser } = require.main.require('./utils/utilities');
 module.exports = (app) => {
-  app.patch('/users/emails', verifyUser, (req, res) => {
-    UserController.updateSpam(req.user.id)
+  app.get('/user/emails', (req, res) => {
+    UserController.updateSpam(req.query.email)
       .then(() => {
-        res.json({
-          message: 'Updated email settings',
-        });
+        res.redirect('https://generalknowledge-quiz.herokuapp.com/quiz');
       })
       .catch((err) => {
         if (err) {

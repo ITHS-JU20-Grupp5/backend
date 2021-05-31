@@ -170,27 +170,19 @@ module.exports.update = (values) =>
       }
     });
 
-module.exports.updateSpam = (id) =>
-  User.findByPk(id)
-    .then((user) => {
-      User.update(
-        {
-          spam: !user.spam,
-        },
-        {
-          where: {
-            id,
-          },
-          returning: true,
-        }
-      )
-        .then((updatedUser) => updatedUser)
-        .catch((err) => {
-          if (err) {
-            console.error('Error: ', err.message);
-          }
-        });
-    })
+module.exports.updateSpam = (email) =>
+  User.update(
+    {
+      spam: false,
+    },
+    {
+      where: {
+        email,
+      },
+      returning: true,
+    }
+  )
+    .then((updatedUser) => updatedUser)
     .catch((err) => {
       if (err) {
         console.error('Error: ', err.message);

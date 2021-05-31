@@ -54,24 +54,22 @@ db.sequelize.sync(options).then(async () => {
 
   recursiveRoutes('routes');
 
-  //Newsletter function below removed from production due to email numerical constraints (but it works ;-) )
-
-  // cron.schedule(
-  //   '0 9 * * *',
-  //   () => {
-  //     UserController.findAll().then((users) => {
-  //       users.forEach((user) => {
-  //         if (user.spam) {
-  //           sendSpam(user.email);
-  //         }
-  //       });
-  //     });
-  //   },
-  //   {
-  //     scheduled: true,
-  //     timezone: 'Europe/Stockholm',
-  //   }
-  // );
+  cron.schedule(
+    '0 9 * * *',
+    () => {
+      UserController.findAll().then((users) => {
+        users.forEach((user) => {
+          if (user.spam) {
+            sendSpam(user.email);
+          }
+        });
+      });
+    },
+    {
+      scheduled: true,
+      timezone: 'Europe/Stockholm',
+    }
+  );
 
   const port = process.env.PORT || 3000;
   const url =
