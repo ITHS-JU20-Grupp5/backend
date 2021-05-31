@@ -58,13 +58,13 @@ module.exports.sendVerification = (userEmail, key) => {
   });
 };
 
-//Send newsletter (ie spam) function below works, but limited by numeracy constraints so has been removed from production
+// Send newsletter (ie spam) function below works, but limited by numeracy constraints so has been removed from production
 
 // module.exports.sendSpam = (userEmail) => {
 //   readHTMLFile(path.join(__dirname, '/emails/daily.html'), (err, html) => {
 //     if (html) {
 //       const options = {
-//         from: 'General Chaos <general-knowledge-quiz@outlook.com',
+//         from: 'General Chaos <general-knowledge-quiz@outlook.com>',
 //         to: userEmail,
 //         subject: 'The General needs you...',
 //         text: `Coming soon`,
