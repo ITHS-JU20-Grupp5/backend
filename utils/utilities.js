@@ -69,7 +69,7 @@ module.exports.verifyUser = (req, res, next) => {
         res.sendStatus(401);
         return;
       }
-      req.user.username = username;
+      req.user = user;
       next();
     })
     .catch((err) => {
@@ -102,7 +102,7 @@ module.exports.verifyAdmin = (req, res, next) => {
         res.sendStatus(401);
         return;
       }
-      req.user.username = username;
+      req.user = user;
       next();
     })
     .catch((err) => {
