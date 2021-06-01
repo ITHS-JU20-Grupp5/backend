@@ -32,24 +32,48 @@ module.exports = (app) => {
       });
       return;
     }
-    UserController.findOrCreate(userObj)
-      .then(([user, created]) => {
-        if (!created) {
-          res.status(400).json({
-            error: 'That username or email is already used',
-          });
-          return;
-        }
-        RoleController.findOrCreate({ role: 'Unverified' })
-          .then(([role]) => {
-            UserController.addRole(user.id, role.id)
-              .then(() => {
-                VerificationController.create()
-                  .then((verification) => {
-                    UserController.setVerification(user.id, verification.id)
-                      .then((newUser) => {
-                        sendVerification(newUser, verification.key);
-                        res.status(201).json(newUser);
+    UserController.findOne({ username: userObj.username })
+      .then((userByUsername) => {
+        if (!userByUsername) {
+          UserController.findOne({ email: userObj.email })
+            .then((userByEmail) => {
+              if (!userByEmail) {
+                UserController.create(userObj)
+                  .then((user) => {
+                    RoleController.findOrCreate({ role: 'Unverified' })
+                      .then(([role]) => {
+                        UserController.addRole(user.id, role.id)
+                          .then(() => {
+                            VerificationController.create()
+                              .then((verification) => {
+                                UserController.setVerification(user.id, verification.id)
+                                  .then((newUser) => {
+                                    sendVerification(newUser, verification.key);
+                                    res.status(201).json(newUser);
+                                  })
+                                  .catch((err) => {
+                                    if (err) {
+                                      res.status(400).json({
+                                        error: err.message,
+                                      });
+                                    }
+                                  });
+                              })
+                              .catch((err) => {
+                                if (err) {
+                                  res.status(400).json({
+                                    error: err.message,
+                                  });
+                                }
+                              });
+                          })
+                          .catch((err) => {
+                            if (err) {
+                              res.status(400).json({
+                                error: err.message,
+                              });
+                            }
+                          });
                       })
                       .catch((err) => {
                         if (err) {
@@ -66,22 +90,24 @@ module.exports = (app) => {
                       });
                     }
                   });
-              })
-              .catch((err) => {
-                if (err) {
-                  res.status(400).json({
-                    error: err.message,
-                  });
-                }
-              });
-          })
-          .catch((err) => {
-            if (err) {
-              res.status(400).json({
-                error: err.message,
-              });
-            }
+              } else {
+                res.status(400).json({
+                  error: 'That email is already in use',
+                });
+              }
+            })
+            .catch((err) => {
+              if (err) {
+                res.status(400).json({
+                  error: err.message,
+                });
+              }
+            });
+        } else {
+          res.status(400).json({
+            error: 'That username is already in use',
           });
+        }
       })
       .catch((err) => {
         if (err) {
