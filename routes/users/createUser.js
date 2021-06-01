@@ -1,4 +1,4 @@
-const { validate } = require.main.require('./utils/utilities');
+const { validate, password } = require.main.require('./utils/utilities');
 const UserController = require.main.require('./controllers/user.controller');
 const RoleController = require.main.require('./controllers/role.controller');
 const VerificationController = require.main.require('./controllers/verification.controller');
@@ -32,6 +32,7 @@ module.exports = (app) => {
       });
       return;
     }
+    userObj.password = await password.encrypt(userObj.password);
     UserController.findOne({ username: userObj.username })
       .then((userByUsername) => {
         if (!userByUsername) {
