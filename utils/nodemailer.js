@@ -69,11 +69,13 @@ module.exports.sendSpam = (user) => {
   readHTMLFile(path.join(__dirname, '/emails/daily.html'), (err, html) => {
     if (html) {
       const template = handlebars.compile(html);
+      const category = categories[Math.floor(Math.random() * categories.length)].toLowerCase();
       const replacements = {
         url: 'https://generalknowledge-quiz.herokuapp.com/quiz',
         name: user.name,
-        category: categories[Math.floor(Math.random() * categories.length)].toLowerCase(),
+        category,
         unsubUrl: `${url}/user/emails?email=${user.email}`,
+        seoCategory: category.replace(' ', ''),
       };
       const compiledHtml = template(replacements);
       const options = {
