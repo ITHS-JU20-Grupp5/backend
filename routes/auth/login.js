@@ -20,20 +20,10 @@ module.exports = (app) => {
         return;
       }
       user = JSON.parse(JSON.stringify(user, null, 4));
-      const accessToken = jwt.sign(user, process.env.TOKENSECRET, {
+      const accessToken = jwt.sign({ username: user.username }, process.env.TOKENSECRET, {
         expiresIn: '30d',
       });
-      const newUser = {
-        username: user.username,
-        name: user.name,
-        email: user.email,
-        password: user.password,
-        roles: user.roles,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
-        accessToken,
-      };
-      res.json(newUser);
+      res.json({ accessToken });
     });
   });
 };

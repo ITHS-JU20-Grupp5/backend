@@ -15,9 +15,7 @@ module.exports = (app) => {
         email: req.body.email,
       })
       .then((user) => {
-        res.status(201).json({
-          user: user.data.newUser,
-        });
+        res.status(201).json(user.data);
       })
       .catch((err) => {
         const error = err.response;

@@ -8,7 +8,7 @@ const Score = db.score;
 const Verification = db.verification;
 
 module.exports.create = (user) =>
-  User.create(user)
+  User.create(user, { returning: true })
     .then((newUser) => newUser)
     .catch((err) => {
       if (err) {
