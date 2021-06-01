@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const UserController = require.main.require('./controllers/user.controller');
+
 /**
  * deprecated
  * Need to refactor this into database constraints
@@ -25,7 +27,7 @@ function verifyAuthHeader(req, res) {
     res.status(403).json({
       message: 'Missing authorization header',
     });
-    return [];
+    return null;
   }
 
   const token = authHeader.split(' ')[1];
@@ -34,57 +36,80 @@ function verifyAuthHeader(req, res) {
     res.status(403).json({
       message: 'No token provided',
     });
-    return [];
+    return null;
   }
 
   return jwt.verify(token, process.env.TOKENSECRET, (err, decoded) => {
     if (err) {
-      res.status(401).json({
-        message: 'Unauthorized',
-      });
-      return [];
+      res.sendStatus(401);
+      return null;
     }
-    req.user = decoded;
-    return req.user.roles;
+    return decoded;
   });
 }
 
 module.exports.verifyUser = (req, res, next) => {
-  const roles = verifyAuthHeader(req, res);
-  if (roles.length === 0) {
+  const { username } = verifyAuthHeader(req, res);
+
+  if (!username) {
+    res.sendStatus(401);
     return;
   }
+
   let authorized = false;
-  roles.forEach((role) => {
-    if (role.role === 'User') {
-      authorized = true;
-    }
-  });
-  if (!authorized) {
-    res.status(401).json({
-      message: 'Unauthorized',
+
+  UserController.findOne({ username })
+    .then((user) => {
+      user.roles.forEach((role) => {
+        if (role.role === 'User') {
+          authorized = true;
+        }
+      });
+      if (!authorized) {
+        res.sendStatus(401);
+        return;
+      }
+      req.user.username = username;
+      next();
+    })
+    .catch((err) => {
+      if (err) {
+        res.status(400).json({
+          error: err.message,
+        });
+      }
     });
-    return;
-  }
-  next();
 };
 
 module.exports.verifyAdmin = (req, res, next) => {
-  const roles = verifyAuthHeader(req, res);
-  if (roles.length === 0) {
+  const { username } = verifyAuthHeader(req, res);
+
+  if (!username) {
+    res.sendStatus(401);
     return;
   }
+
   let authorized = false;
-  roles.forEach((role) => {
-    if (role.role === 'Admin') {
-      authorized = true;
-    }
-  });
-  if (!authorized) {
-    res.status(401).json({
-      message: 'Unauthorized',
+
+  UserController.findOne({ username })
+    .then((user) => {
+      user.roles.forEach((role) => {
+        if (role.role === 'Admin') {
+          authorized = true;
+        }
+      });
+      if (!authorized) {
+        res.sendStatus(401);
+        return;
+      }
+      req.user.username = username;
+      next();
+    })
+    .catch((err) => {
+      if (err) {
+        res.status(400).json({
+          error: err.message,
+        });
+      }
     });
-    return;
-  }
-  next();
 };
