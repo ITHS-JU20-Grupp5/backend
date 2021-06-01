@@ -60,7 +60,7 @@ db.sequelize.sync(options).then(async () => {
       UserController.findAll().then((users) => {
         users.forEach((user) => {
           if (user.spam) {
-            sendSpam(user.email);
+            sendSpam(user);
           }
         });
       });
