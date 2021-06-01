@@ -48,7 +48,7 @@ module.exports = (app) => {
                   .then((verification) => {
                     UserController.setVerification(user.id, verification.id)
                       .then((newUser) => {
-                        sendVerification(newUser.email, verification.key);
+                        sendVerification(newUser, verification.key);
                         res.status(201).json(newUser);
                       })
                       .catch((err) => {
