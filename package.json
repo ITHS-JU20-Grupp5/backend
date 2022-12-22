@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "fs": "*",
     "handlebars": "^4.7.7",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "node-cron": "^3.0.0",
     "nodemailer": "^6.6.1",
     "path": "^0.12.7",
